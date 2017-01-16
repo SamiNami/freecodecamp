@@ -1,0 +1,807 @@
+var myStr = "I am a \"double quoted\" string inside \"double quotes\".";
+
+\'	single quote
+\"	double quote
+\\	backslash
+\n	newline
+\r	carriage return
+\t	tab
+\b	backspace
+\f	form feed
+
+Using \ (escaping) in order to write special characters like \
+var myStr ="FirstLine\n\\SecondLine\\\rThirdLine";
+var myStr="This is the start. " + "This is the end.";
+
+// useing += to add to a string:
+/ Example
+var ourStr = "I come first. ";
+ourStr += "I come second.";
+
+/ Only change code below this line
+
+var myStr ="This is the first sentence. ";
+myStr +="This is the second sentence.";
+
+
+// building strings
+var myName = "Sami";
+var myStr = "My name is " + myName + " and I am swell!";
+
+// appending a variable
+
+var anAdjective = "awesome!";
+var ourStr = "Free Code Camp is ";
+ourStr += anAdjective;
+
+/ Only change code below this line
+
+var someAdjective = "is nice baby.";
+var myStr = "Learning to code is ";
+myStr += someAdjective;
+
+// getting the legth of a string
+
+/ Example
+var firstNameLength = 0;
+var firstName = "Ada";
+
+firstNameLength = firstName.length;
+
+/ Setup
+var lastNameLength = 0;
+var lastName = "Lovelace";
+
+//Only change code below this line.
+
+var lastNameLength = 0;
+var lastName ="kupperka";
+
+lastNameLength = lastName.length;
+
+// bracket notation
+
+/ Example
+var firstLetterOfFirstName = "";
+var firstName = "Ada";
+
+firstLetterOfFirstName = firstName[0];
+
+//Setup
+var firstLetterOfLastName = "";
+var lastName = "Lovelace";
+
+/ Only change code below this line
+
+
+firstLetterOfLastName = lastName[0];
+
+// asigning new values to strings
+// you can't change indivudual letters.
+
+var myStr = "Jello World";
+
+//Only change code below this line
+
+myStr = "Hello World"; // Fix Me
+
+// Getting the 3'r letter of a string variable
+var thirdLetterOfLastName = lastName[2];
+
+// getting the last letter out of a string
+// what is inside the bracets decided the position
+
+var lastLetterOfLastName = lastName[lastName.length -1];
+var secondToLastLetterOfLastName = lastName[lastName.length-2];
+
+/ word blanks game
+
+function wordBlanks(myNoun, myAdjective, myVerb, myAdverb) {
+  var result = "";
+  / Your code below this line
+  result = "I am a big " + myNoun  + " and my life is " + myAdjective +" then I ";
+  result += myVerb + " " + myAdverb;
+
+
+  / Your code above this line
+  return result;
+}
+
+/ Change the words here to test your function
+wordBlanks("dog", "big", "ran", "quickly");
+
+// storing stuff in arrays
+
+var myArray = ["Nigra", 69];
+
+// nesting arrays inside other arrays
+
+var myArray = [["Kuppa", 55],["nippa", 66]];
+
+// getting the first value out of an array
+var myData = myArray[0];
+
+// changeing the index of of an array
+myArray[0] = 3;
+
+// getting the right value out of multi layered arrays
+var myArray = [[1,2,3], [4,5,6], [7,8,9], [[10,11,12], 13, 14]];
+
+/ Only change code below this line.
+var myData = myArray[2][1];
+
+// using push to add data to the end of the array
+
+// Example
+var ourArray = ["Stimpson", "J", "cat"];
+ourArray.push(["happy", "joy"]);
+/ ourArray now equals ["Stimpson", "J", "cat", ["happy", "joy"]]
+
+/ Setup
+var myArray = [["John", 23], ["cat", 2]];
+
+/ Only change code below this line.
+myArray.push(["dog",3]);
+
+// popping the last number off an array
+
+// Example
+var ourArray = [1,2,3];
+var removedFromOurArray = ourArray.pop();
+/ removedFromOurArray now equals 3, and ourArray now equals [1,2]
+
+/ Setup
+var myArray = [["John", 23], ["cat", 2]];
+
+/ Only change code below this line.
+var removedFromMyArray = myArray.pop();
+
+// using shift to remove the first element
+var removedFromMyArray = myArray.shift();
+
+// using unshift to add elements to the front of an array
+
+// Example
+var ourArray = ["Stimpson", "J", "cat"];
+ourArray.shift(); // ourArray now equals ["J", "cat"]
+ourArray.unshift("Happy");
+/ ourArray now equals ["Happy", "J", "cat"]
+
+/ Setup
+var myArray = [["John", 23], ["dog", 3]];
+myArray.shift();
+
+/ Only change code below this line.
+myArray.unshift(["Paul",35]);
+
+// creating my own array
+var myList = [["Candy",5],["Coffee",10],["guaca",11],["brownie",55],["kush",18]];
+
+// creating a function
+
+/ Example
+function ourReusableFunction() {
+  console.log("Heyya, World");
+}
+
+ourReusableFunction();
+
+/ Only change code below this line
+
+function reusableFunction() {
+  console.log("Hi World");
+}
+
+reusableFunction();
+
+//Using arugments and calling
+
+
+/ Example
+function ourFunctionWithArgs(a, b) {
+  console.log(a - b);
+}
+ourFunctionWithArgs(10, 5); // Outputs 5
+
+/ Only change code below this line.
+
+function functionWithArgs(z, x){
+  console.log(z + x);
+}
+
+functionWithArgs(1,2);
+
+// Inside functions I have to use var to declare variables or they become global
+
+/ Declare your variable here
+var myGlobal = 10;
+
+function fun1() {
+  oopsGlobal = 5;
+
+}
+
+/ Only change code above this line
+function fun2() {
+  var output = "";
+  if (typeof myGlobal != "undefined") {
+    output += "myGlobal: " + myGlobal;
+  }
+  if (typeof oopsGlobal != "undefined") {
+    output += " oopsGlobal: " + oopsGlobal;
+  }
+  console.log(output);
+}
+
+//Learning functions scopes
+
+function myLocalScope() {
+  'use strict';
+  var myVar ="Kippa";
+
+  console.log(myVar);
+}
+myLocalScope();
+
+// local variables with the same name as global, override global ones inside the scope
+
+
+/ Setup
+var outerWear = "T-Shirt";
+
+function myOutfit() {
+  / Only change code below this line
+
+  var outerWear ="sweater";
+
+  // Only change code above this line
+  return outerWear;
+}
+
+myOutfit();
+
+//Returning values from functions
+
+/ Example
+function minusSeven(num) {
+  return num - 7;
+}
+
+/ Only change code below this line
+function timesFive(numba) {
+  return numba * 5;
+}
+
+/Assigning a return value of a function to a variable
+
+// Example
+var changed = 0;
+
+function change(num) {
+  return (num + 5) / 3;
+}
+
+changed = change(10);
+
+/ Setup
+var processed = 0;
+
+function processArg(num) {
+  return (num + 3) / 5;
+}
+
+/ Only change code below this line
+
+var processed = processArg(7);
+
+//Using a function to push and shift off an array
+
+function nextInLine(arr, item) {
+  arr.push(item);
+  var removeFirst = arr.shift();
+
+  return removeFirst;
+}
+
+// Test Setup
+var testArr = [1,2,3,4,5];
+
+// Boolean values
+
+function welcomeToBooleans() {
+
+return true; // Change this line
+}
+
+//Checking boolean values with if statments
+
+
+// Example
+function ourTrueOrFalse(isItTrue) {
+  if (isItTrue) {
+    return "Yes, it's true";
+  }
+  return "No, it's false";
+}
+
+// Setup
+function trueOrFalse(wasThatTrue) {
+
+  if (wasThatTrue){
+    return "Yes, that was true";
+  }
+    return "No, that was false";
+
+}
+
+//Boolean with == (equality operator)
+
+function testEqual(val) {
+  if (val == 12) { // Change this line
+    return "Equal";
+  }
+  return "Not Equal";
+}
+
+// using strictly equal, checks for both number value and data type
+function testStrict(val) {
+  if (val === 7) { // Change this line
+    return "Equal";
+  }
+  return "Not Equal";
+}
+
+//Stick unequality !==
+
+function testStrictNotEqual(val) {
+  // Only Change Code Below this Line
+
+  if (val !== 17) {
+
+  // Only Change Code Above this Line
+
+    return "Not Equal";
+  }
+  return "Equal";
+}
+
+
+// using the logical and operator
+
+function testLogicalAnd(val) {
+  // Only change code below this line
+
+  if (val <= 50 && val >=25) {
+
+      return "Yes";
+
+  }
+
+  // Only change code above this line
+  return "No";
+}
+
+// using logical or
+
+function testLogicalOr(val) {
+  // Only change code below this line
+
+  if (val >= 21 || val <= 9) {
+    return "Outside";
+  }
+
+
+
+  // Only change code above this line
+  return "Inside";
+}
+
+// using else
+
+if (val > 5) {
+   result = "Bigger than 5";
+ }
+
+ else {
+   result = "5 or Smaller";
+ }
+
+ return result;
+}
+
+// it's improtant to check the if / if else statments in the right order
+
+
+function orderMyLogic(val) {
+  if (val < 5) {
+    return "Less than 5";
+  } else if (val < 10) {
+    return "Less than 10";
+  } else {
+    return "Greater than or equal to 10";
+  }
+}
+
+//Chaining else if statements
+
+function testSize(num) {
+  // Only change code below this line
+  if (num < 5){
+    return "Tiny";
+  } else if (num < 10){
+    return "Small";
+  } else if (num < 15){
+    return "Medium";
+  } else if (num < 20){
+    return "Large";
+  } else if (num >= 20){
+    return "Huge";
+  }
+
+  return "Change Me";
+
+}
+
+// more else if
+
+function golfScore(par, strokes) {
+  // Only change code below this line
+  if (strokes === 1){
+    return "Hole-in-one!";
+  } else if (strokes <= par - 2){
+    return "Eagle";
+  } else if (strokes === par - 1){
+    return "Birdie";
+  } else if (strokes === par){
+    return "Par";
+  } else if (strokes === par +1){
+    return "Bogey";
+  } else if (strokes === par +2){
+    return "Double Bogey";
+  } else if (strokes >= par + 3){
+    return "Go Home!";
+  }
+
+}
+
+// Using a switch
+
+function caseInSwitch(val) {
+  var answer = "";
+  // Only change code below this line
+
+  switch  (val) {
+    case 1:
+      answer = "alpha";
+      break;
+    case 2:
+      answer = "beta";
+      break;
+    case 3:
+      answer = "gamma";
+      break;
+    case 4:
+      answer = "delta";
+      break;
+
+  }
+
+
+  // Only change code above this line
+  return answer;
+}
+
+// Change this value to test
+caseInSwitch(4);
+
+// using default
+function switchOfStuff(val) {
+  var answer = "";
+  // Only change code below this line
+  switch (val) {
+    case "a":
+      answer ="apple";
+      break;
+    case "b":
+      answer ="bird";
+      break;
+    case "c":
+      answer ="cat";
+      break;
+    default:
+      answer ="stuff";
+  }
+
+
+  // Only change code above this line
+  return answer;
+}
+
+// You can return boolean values from functions
+
+
+function isLess(a, b) {
+    return a < b;
+
+}
+
+// Change these values to test
+isLess(10, 15);
+
+//You can return undefined
+
+//Card counting algorith
+
+var count = 0;
+
+function cc(card) {
+  // Only change code below this line
+
+
+  switch (card){
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+      count += 1;
+      break;
+    case 7:
+    case 8:
+    case 9:
+      count += 0;
+      break;
+    case 10:
+    case "J":
+    case "Q":
+    case "K":
+    case "A":
+      count -= 1;
+      break;
+  }
+
+  if (count > 0){
+    return count + " Bet";
+  }
+  return count + " Hold";
+
+  // Only change code above this line
+}
+
+// Add/remove calls to test your function.
+// Note: Only the last will display
+cc(7); cc(8); cc(9);
+
+// objects
+
+
+// Example
+var ourDog = {
+  "name": "Camper",
+  "legs": 4,
+  "tails": 1,
+  "friends": ["everything!"]
+};
+
+// Only change code below this line.
+
+var myDog = {
+  "name": "Puppers",
+  "legs": 6,
+  "tails": 2,
+  "friends": ["Water", "Dogs"]
+
+};
+
+// Targeting values in Objects, when you know the name of the value. .
+
+var testObj = {
+  "hat": "ballcap",
+  "shirt": "jersey",
+  "shoes": "cleats"
+};
+
+// Only change code below this line
+
+var hatValue = testObj.hat;      // Change this line
+var shirtValue = testObj.shirt;    // Change this line
+
+// you can also use [bracets] to acces objects
+
+
+// Setup
+var testObj = {
+  "an entree": "hamburger",
+  "my side": "veggies",
+  "the drink": "water"
+};
+
+// Only change code below this line
+
+var entreeValue = testObj["an entree"];
+var drinkValue = testObj["the drink"];
+
+// acessing obj properties with variables
+
+
+// Setup
+var testObj = {
+  12: "Namath",
+  16: "Montana",
+  19: "Unitas"
+};
+
+// Only change code below this line;
+
+var playerNumber = 16;
+var player = testObj[playerNumber];
+
+//Updateing object properties
+
+/ Example
+var ourDog = {
+  "name": "Camper",
+  "legs": 4,
+  "tails": 1,
+  "friends": ["everything!"]
+};
+
+ourDog.name = "Happy Camper";
+
+// Setup
+var myDog = {
+  "name": "Coder",
+  "legs": 4,
+  "tails": 1,
+  "friends": ["Free Code Camp Campers"]
+};
+
+/ Only change code below this line.
+
+myDog.name = "Happy Coder";
+
+//
+
+// adding propeties to objects
+
+
+// Example
+var ourDog = {
+  "name": "Camper",
+  "legs": 4,
+  "tails": 1,
+  "friends": ["everything!"]
+};
+
+ourDog.bark = "bow-wow";
+
+/ Setup
+var myDog = {
+  "name": "Happy Coder",
+  "legs": 4,
+  "tails": 1,
+  "friends": ["Free Code Camp Campers"]
+};
+
+myDog.bark = "woof";
+
+//deleting properties from objects
+
+delete myDog.tails;
+
+//Using object lookups
+
+/ Setup
+function phoneticLookup(val) {
+  var result = "";
+
+  / Only change code below this line
+  var lookup = {
+    "alpha": "Adams",
+    "bravo": "Boston",
+  "charlie": "Chicago",
+    "delta": "Denver",
+     "echo": "Easy",
+  "foxtrot": "Frank"
+  };
+
+  result = lookup[val];
+
+
+Only change code above this line
+  return result;
+}
+
+phoneticLookup("charlie");
+
+//Checking if the value exists, if if does, returns value
+
+/ Setup
+var myObj = {
+  gift: "pony",
+  pet: "kitten",
+  bed: "sleigh"
+};
+
+function checkObj(checkProp) {
+  // Your Code Here
+  if (myObj.hasOwnProperty(checkProp)){
+    return myObj[checkProp];
+  }
+  return "Not Found";
+
+}
+
+checkObj("gift");
+
+//An array that contains one object inside
+//the object has metadata
+// called a Data Struckture
+
+var myMusic = [
+  {
+    "artist": "Billy Joel",
+    "title": "Piano Man",
+    "release_year": 1973,
+    "formats": [
+      "CS",
+      "8T",
+      "LP" ],
+    "gold": true
+  },
+  {"artist": "Bubba Lovely",
+   "title": "Luv Meh Some",
+   "release_year": 1969,
+   "formats":[
+     "CD",
+     "8t",
+     "casette"
+   ]
+  }
+  // Add record here
+];
+
+// accessing nested objects
+
+var myStorage = {
+  "car": {
+    "inside": {
+      "glove box": "maps",
+      "passenger seat": "crumbs"
+     },
+    "outside": {
+      "trunk": "jack"
+    }
+  }
+};
+
+// Only change code below this line
+
+var gloveBoxContents = myStorage.car.inside["glove box"]; // Change this line
+
+//Finding stuff in nested arrays
+
+
+/ Setup
+var myPlants = [
+  {
+    type: "flowers",
+    list: [
+      "rose",
+      "tulip",
+      "dandelion"
+    ]
+  },
+  {
+    type: "trees",
+    list: [
+      "fir",
+      "pine",
+      "birch"
+    ]
+  }
+];
+
+/ Only change code below this line
+
+var secondTree = myPlants[1].list[1];
