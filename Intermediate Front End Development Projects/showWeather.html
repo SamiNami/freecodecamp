@@ -44,16 +44,23 @@ $(document).ready(function() {
          var weather = json.weather[0].main;
          var icon = json.weather[0].icon;
 
-         $("#temp").html("Temperature: " + tempC + " ° F , Country: " + country + " " + place + ", Weather: " + weather );
+         $("#temp").html("Temperature: " + tempC + " ° C , Country: " + country + " " + place + ", Weather: " + weather );
          $("#icon").html('<img src="http://openweathermap.org/img/w/'+icon+'.png" alt="weatherimage" />');
 
+         // creating a variable for the toggle button
+         var check = 0;
 
-        $("#far").on("click", function(){
-          $("#temp").html("Temperature: " + tempF + " ° F , Country: " + country + " " + place + ", Weather: " + weather );
-          });
+        $("#toggle").on("click", function(){
 
-        $("#cel").on("click", function(){
-          $("#temp").html("Temperature: " + tempC + " ° F , Country: " + country + " " + place + ", Weather: " + weather );
+
+          if(check == 1){
+            $("#temp").html("Temperature: " + tempC + " ° C , Country: " + country + " " + place + ", Weather: " + weather );
+            check = 0;
+            }
+          else if(check == 0) {
+            $("#temp").html("Temperature: " + tempF + " ° F , Country: " + country + " " + place + ", Weather: " + weather );
+            check = 1;
+            }
          });
 
         });
@@ -116,9 +123,7 @@ $(document).ready(function() {
 
     <div class = "row text-center" >
       <div class = "col-xs-12">
-        <button id = "far" class = "btn btn-primary" type="button">  Farenheit </button>
-        <button id = "cel" class = "btn btn-primary" type="button">  Celcius </button>
-
+        <button id = "toggle" class = "btn btn-primary" type="button">  Farenheit / Celcius </button>        
       </div>
     </div>
 
