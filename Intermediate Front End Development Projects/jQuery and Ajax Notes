@@ -62,7 +62,7 @@
 </div>
 
 
-//Get JSON with jQuert getJSON Method
+//Get JSON with jQuery getJSON Method
 // used to get data from api's
 
 
