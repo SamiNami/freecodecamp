@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- import jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <!-- import bootstrap -->
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+  <!-- import font awsome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="XXX.css">
+</head>
+
+
+<script>
+$(document).ready(function() {
+
+  var latitude= 0;
+  var longitude = 0;
+
+
+
+
+  // Get the users location
+
+  if (navigator.geolocation) {
+   navigator.geolocation.getCurrentPosition(function(position) {
+
+     latitude = (position.coords.latitude);
+     longitude =  (position.coords.longitude);
+     $("#data").html(" ");
+     // get the data from the weathermap API
+     var url = "http://api.openweathermap.org/data/2.5/weather?lat=" +latitude+  "&lon=" +longitude+ "&callback&APPID=6f3eebed21d1aa518fa644781a882b27"
+     $.getJSON(url, function(json) {
+         var temp = json.main.temp;
+         var tempF = temp * 9/5 -459.67;
+         var tempC = temp - 273.15;
+         // round the values to one decimal
+         tempF = round(tempF,1);
+         tempC = round(tempC,1);
+         var country = json.sys.country;
+         var place = json.name;
+         var weather = json.weather[0].main;
+         var icon = json.weather[0].icon;
+
+         $("#temp").html("Temperature: " + tempC + " ° F " + country + " " + place + " " + weather );
+         $("#icon").html('<img src="http://openweathermap.org/img/w/'+icon+'.png" alt="weatherimage" />');
+
+
+        $("#far").on("click", function(){
+          $("#temp").html("Temperature: " + tempF + " ° F " + country + " " + place + " " + weather );
+          });
+
+        $("#cel").on("click", function(){
+          $("#temp").html("Temperature: " + tempC + " ° C " + country + " " + place + " " + weather );
+         });
+
+        });
+        // function for rounding the temperature values
+        function round(value, precision) {
+            var multiplier = Math.pow(10, precision || 0);
+            return Math.round(value * multiplier) / multiplier;
+        }
+
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
+});
+</script>
+
+
+
+
+
+
+
+
+<html>
+
+  <div class="container" >
+
+    <div class = "row text-center">
+      <div class = "col-xs-12  ">
+        <h1>Weather Machine</h1>
+      </div>
+    </div>
+
+    <div class = "row text-center">
+      <div class = "col-xs-12 " id ="data" >
+        Allow the browser to get your location!
+      </div>
+    </div>
+
+    <div class = "row text-center" id ="temp" >
+      <div class = "col-xs-12">
+
+      </div>
+    </div>
+
+    <div class = "row text-center" id ="icon" >
+      <div class = "col-xs-12">
+
+      </div>
+    </div>
+
+    <div class = "row text-center" >
+      <div class = "col-xs-12">
+        <button id = "far" class = "btn btn-primary" type="button">  Farenheit </button>
+        <button id = "cel" class = "btn btn-primary" type="button">  Celcius </button>
+
+      </div>
+    </div>
+
+  </div>
+</html>
