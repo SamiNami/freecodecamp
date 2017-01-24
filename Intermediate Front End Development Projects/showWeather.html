@@ -44,16 +44,16 @@ $(document).ready(function() {
          var weather = json.weather[0].main;
          var icon = json.weather[0].icon;
 
-         $("#temp").html("Temperature: " + tempC + " ° F " + country + " " + place + " " + weather );
+         $("#temp").html("Temperature: " + tempC + " ° F , Country: " + country + " " + place + ", Weather: " + weather );
          $("#icon").html('<img src="http://openweathermap.org/img/w/'+icon+'.png" alt="weatherimage" />');
 
 
         $("#far").on("click", function(){
-          $("#temp").html("Temperature: " + tempF + " ° F " + country + " " + place + " " + weather );
+          $("#temp").html("Temperature: " + tempF + " ° F , Country: " + country + " " + place + ", Weather: " + weather );
           });
 
         $("#cel").on("click", function(){
-          $("#temp").html("Temperature: " + tempC + " ° C " + country + " " + place + " " + weather );
+          $("#temp").html("Temperature: " + tempC + " ° F , Country: " + country + " " + place + ", Weather: " + weather );
          });
 
         });
