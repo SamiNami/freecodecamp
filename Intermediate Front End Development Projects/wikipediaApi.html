@@ -15,8 +15,15 @@ $(document).ready(function() {
     //random wikipedia page script
     $("#randomPage").on("click", function(){
 
-      window.open('https://en.wikipedia.org/wiki/Special:Random');
+    window.open('https://en.wikipedia.org/wiki/Special:Random');
   });
+
+  $("#input").keyup(function(event){
+      if(event.keyCode == 13){
+          $("#search").click();
+      }
+  });
+
 
   $("#search").on("click", function(){
 
@@ -24,14 +31,42 @@ $(document).ready(function() {
       var title = document.getElementById('input').value;
       //get Json from wikiepdia api
       $.getJSON("https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" +title+ "&utf8=&format=json&callback=?", function(json){
-        // JSON.stringify(json)
-        $("#target").html(title);
+        // var to store the relevant data in
+        var test = json.query.search[0].snippet;
+        var html = "";
+        // loop through each element of the json.Object
+        json.query.search.forEach(function(val) {
+          // create an object out of each key/object inside the object
+          var keys = Object.keys(val);
+
+          // loop through the keys
+          keys.forEach(function(key) {
+
+            // since the objects have many keys, we only want to display things for spesific keys
+            // we want the title and snippet keys
+            if(key === "title"){
+            html += "<div class = 'titles'>";
+            html += "<a href='https://en.wikipedia.org/wiki/"+val[key]+"' >"+val[key]+"</a> <br>";
+            }
+
+            else if(key === "snippet"){
+            html +=  val[key] + "...<br>";
+            html += "</div><br>";
+            }
+          });
+
+        });
+
+        $("#target").html(html);
       });
 
     });
 
 
 });
+
+
+
 </script>
 
 
@@ -40,7 +75,7 @@ $(document).ready(function() {
   <div class="container-fluid" >
     <div class = "row text-center">
       <div class = "col-xs-12  ">
-        <h1>Wikipedia </h1>
+        <h1>Wikipedia</h1>
       </div>
 
     </div>
@@ -56,14 +91,15 @@ $(document).ready(function() {
     <div class = "row text-center">
 
       <div class = "col-xs-12">
-        <form action = "submit-search-qeary" >
+        <!-- important to add onSubmit="retrun false" to prevent site from reloading" -->
+        <form onSubmit="return false;">
           <input type="text" placeholder="Search Wikipedia" id ="input" >
         </form>
         <button type="button" id="search" > Search </button>
       </div>
 
       <div class = "col-xs-12" id="target">
-        Target
+
       </div>
     </div>
   </div>
