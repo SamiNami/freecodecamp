@@ -12,12 +12,24 @@
 
 <script>
 $(document).ready(function() {
-
+    //random wikipedia page script
     $("#randomPage").on("click", function(){
 
       window.open('https://en.wikipedia.org/wiki/Special:Random');
-
   });
+
+  $("#search").on("click", function(){
+
+      // get the input value from the form
+      var title = document.getElementById('input').value;
+      //get Json from wikiepdia api
+      $.getJSON("https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" +title+ "&utf8=&format=json&callback=?", function(json){
+        // JSON.stringify(json)
+        $("#target").html(title);
+      });
+
+    });
+
 
 });
 </script>
@@ -32,6 +44,7 @@ $(document).ready(function() {
       </div>
 
     </div>
+
     <div class = "row text-center">
       <div class = "col-xs-12 " >
 
@@ -39,11 +52,18 @@ $(document).ready(function() {
 
       </div>
     </div>
+
     <div class = "row text-center">
+
       <div class = "col-xs-12">
+        <form action = "submit-search-qeary" >
+          <input type="text" placeholder="Search Wikipedia" id ="input" >
+        </form>
+        <button type="button" id="search" > Search </button>
+      </div>
 
-
-
+      <div class = "col-xs-12" id="target">
+        Target
       </div>
     </div>
   </div>
