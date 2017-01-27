@@ -11,18 +11,52 @@
 </head>
 
 <script>
+
 $(document).ready(function(){
+  // array for the streams I want to GET
+  var streams = ["ESL_SC2", "freecodecamp", "summit1g", "brunofin"];
+  // var to store the data in
+  var image = "";
+  var link ="";
+  var info ="";
 
-  var streams = ["ESL_SC2", "freecodecamp,", "summit1g"]; 
+  streams.forEach(function(val){
+    // get stream value check
+    $.getJSON("https://wind-bow.gomix.me/twitch-api/channels/"+ val +"",function(json){
+      // if the status is 404, html becomes deleted
+      if(json.status === 404){
+        // makes the class deleted for easier styling
+        $( "#targetImage" ).append( "<div class ='deleted'>  deleted </div><br>" );
+        $( "#targetLink" ).append( "<div class ='deleted'> deleted </div><br>" );
+        $( "#targetInfo" ).append( "<div class ='deleted'> "+val+" has been deleted </div><br>" );
+      }
 
-  $.getJSON("https://wind-bow.gomix.me/twitch-api/streams/ESL_SC2",function(json){
+      else{
+        // get image
+        $( "#targetImage" ).append( "<div class ='logo'> "+json.logo+"</div><br>" );
+        $( "#targetLink" ).append( "<div class ='logo'> "+json.url+"</div><br>" );
 
-    $("#target").html(JSON.stringify(json));
+        $.getJSON("https://wind-bow.gomix.me/twitch-api/streams/"+ val +"",function(json){
+
+          if (json.stream === null ){
+            $( "#targetInfo" ).append( "<div class ='info offline'> Offline </div><br>" );
+
+          }
+          else{
+            $( "#targetInfo" ).append( "<div class ='info offline'> Online </div><br>" );
+          }
+
+
+        });
+
+
+      }
+
+
+    });
 
 
   });
-
-
 
 });
 
@@ -33,7 +67,7 @@ $(document).ready(function(){
 
 <html>
 
-  <div class="container-fluid" >
+  <div class="container well" >
 
     <div class = "row text-center">
 
@@ -45,9 +79,13 @@ $(document).ready(function(){
 
     <div class = "row text-center">
 
-      <div class = "col-xs-12" id="target">
+      <div class = "col-xs-3" id="targetImage">Image </div>
 
-    </div>
+      <div class = "col-xs-3" id="targetLink">Link </div>
+
+      <div class = "col-xs-6" id="targetInfo">Info</div>
+
+
 
    </div>
   </div>
