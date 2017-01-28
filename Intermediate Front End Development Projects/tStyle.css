@@ -1,0 +1,44 @@
+
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body{
+  background-color: #add8e6;
+}
+
+.imageCSS {
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    width: 20%;
+    background-color: red;
+  }
+
+.logo{
+  height: 100px;
+  padding: 10px;
+  background-color: blue;
+
+
+
+}
+.link{
+  height: 100px;
+  padding: 10px;
+  background-color: blue;
+
+
+}
+
+.info{
+  height: 100px;
+  padding: 10px;
+  background-color: blue;
+
+
+
+}

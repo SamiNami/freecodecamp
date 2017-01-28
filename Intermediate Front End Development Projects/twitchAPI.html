@@ -8,6 +8,7 @@
   <!-- import bootstrap -->
   <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
 
+  <link rel="stylesheet" href="tStyle.css">
 </head>
 
 <script>
@@ -51,22 +52,27 @@ $(document).ready(function(){
             checkOnline.sort(compare);
 
             // add the data to the CSS
-            // still need to add the classes
             for (i = 0; i < check.length; i++){
               if (check[i].exists === false){
-                $( "#targetImage" ).append( "<div class ='logo'> Placeholder </div><br>" );
-                $( "#targetLink" ).append( "<div class ='logo'> Placeholder </div><br>" );
-                $( "#targetInfo" ).append( "<div class ='logo'> "+ check[i].name +" has been deleted  </div><br>" );
+                // note added imageCSS class
+                var placeholderImage = "<img src='http://sweettutos.com/wp-content/uploads/2015/12/placeholder.png' alt='placeholder' class = 'imageCSS'>";
+                $( "#targetImage" ).append( "<div class ='logo placeholderImage'> "+placeholderImage+" </div>" );
+                $( "#targetLink" ).append( "<div class ='link deleted'> Deleted </div>" );
+                $( "#targetInfo" ).append( "<div class ='info deleted'> "+ check[i].name +" has been deleted  </div>" );
               }
               else if (check[i].exists === true){
-                $( "#targetImage" ).append( "<div class ='logo'> " + check[i].image + " </div><br>" );
-                $( "#targetLink" ).append( "<div class ='logo'> " + check[i].url + " </div><br>" );
+                // note added imageCSS class
+                var image = "<img src='"+ check[i].image +"' alt='logo' class ='imageCSS' ";
+                $( "#targetImage" ).append( "<div class ='logo'> " + image + " </div>" );
+
+                var url = "<a href='" +check[i].url + "'> " + check[i].name + " </a>";
+                $( "#targetLink" ).append( "<div class ='link'> " + url + " </div>" );
 
                 if(checkOnline[i].status === "offline" ){
-                  $( "#targetInfo" ).append( "<div class ='logo'> "+ check[i].name +" is offline </div><br>" );
+                  $( "#targetInfo" ).append( "<div class ='info offline'> "+ check[i].name +" is offline </div>" );
                 }
                 else if(checkOnline[i].status === "online" ){
-                  $( "#targetInfo" ).append( "<div class ='logo'> "+ checkOnline[i].extra +" </div><br>" );
+                  $( "#targetInfo" ).append( "<div class ='info online'> "+ checkOnline[i].extra +" </div>" );
                 }
               }
             }
@@ -102,7 +108,7 @@ function compare(a,b) {
       </div>
 
     </div>
-
+    <!-- real css is higher up on line 57 -->
     <div class = "row text-center">
       <!--  target div for the logo -->
       <div class = "col-xs-3" id="targetImage">Image </div>
