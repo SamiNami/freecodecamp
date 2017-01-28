@@ -15,52 +15,78 @@
 $(document).ready(function(){
   // array for the streams I want to GET
   var streams = ["ESL_SC2", "freecodecamp", "summit1g", "brunofin"];
-  // var to store the data in
-  var image = "";
-  var link ="";
-  var info ="";
+  // arrays to store the data in
+  var check =[];
+  var checkOnline = [];
 
-  streams.forEach(function(val){
-    // get stream value check
-    $.getJSON("https://wind-bow.gomix.me/twitch-api/channels/"+ val +"",function(json){
+  streams.forEach(function(stream){
+
+    $.getJSON("https://wind-bow.gomix.me/twitch-api/channels/"+ stream +"",function(json){
       // if the status is 404, html becomes deleted
       if(json.status === 404){
-        // makes the class deleted for easier styling
-        $( "#targetImage" ).append( "<div class ='deleted'>  deleted </div><br>" );
-        $( "#targetLink" ).append( "<div class ='deleted'> deleted </div><br>" );
-        $( "#targetInfo" ).append( "<div class ='deleted'> "+val+" has been deleted </div><br>" );
+        // add exist false
+        check.push({ name: stream, exists: false });
       }
-
       else{
-        // get image
-        $( "#targetImage" ).append( "<div class ='logo'> "+json.logo+"</div><br>" );
-        $( "#targetLink" ).append( "<div class ='logo'> "+json.url+"</div><br>" );
+        // add exist true, gets the image, get url
+        check.push({ name: stream, exists: true, image: json.logo, url: json.url });
 
-        $.getJSON("https://wind-bow.gomix.me/twitch-api/streams/"+ val +"",function(json){
+      }
+      // checks if all JSON requests have arrived (once the check is same lenght as streams)
+      if (check.length === streams.length){
 
+        streams.forEach(function(stream){
+          $.getJSON("https://wind-bow.gomix.me/twitch-api/streams/"+ stream +"",function(json){
           if (json.stream === null ){
-            $( "#targetInfo" ).append( "<div class ='info offline'> Offline </div><br>" );
-
+            checkOnline.push({ name: stream, status: "offline" });
           }
           else{
-            $( "#targetInfo" ).append( "<div class ='info offline'> Online </div><br>" );
+            checkOnline.push({ name: stream, status: "online", extra: json.stream.channel.status });
           }
+          if (checkOnline.length === streams.length){
 
+            console.log(check[0].name);
+            // sort both arrays so they are in the same order
+            check.sort(compare);
+            checkOnline.sort(compare);
 
+            // add the data to the CSS
+            // still need to add the classes
+            for (i = 0; i < check.length; i++){
+              if (check[i].exists === false){
+                $( "#targetImage" ).append( "<div class ='logo'> Placeholder </div><br>" );
+                $( "#targetLink" ).append( "<div class ='logo'> Placeholder </div><br>" );
+                $( "#targetInfo" ).append( "<div class ='logo'> "+ check[i].name +" has been deleted  </div><br>" );
+              }
+              else if (check[i].exists === true){
+                $( "#targetImage" ).append( "<div class ='logo'> " + check[i].image + " </div><br>" );
+                $( "#targetLink" ).append( "<div class ='logo'> " + check[i].url + " </div><br>" );
+
+                if(checkOnline[i].status === "offline" ){
+                  $( "#targetInfo" ).append( "<div class ='logo'> "+ check[i].name +" is offline </div><br>" );
+                }
+                else if(checkOnline[i].status === "online" ){
+                  $( "#targetInfo" ).append( "<div class ='logo'> "+ checkOnline[i].extra +" </div><br>" );
+                }
+              }
+            }
+          } // I made a slide!
+          });
         });
-
-
       }
-
-
     });
-
-
   });
-
 });
 
 
+// sorting function for the arrays
+function compare(a,b) {
+    if (a.name < b.name)
+      return -1;
+    if (a.name > b.name)
+      return 1;
+    return 0;
+  }
 
 </script>
 
@@ -78,11 +104,11 @@ $(document).ready(function(){
     </div>
 
     <div class = "row text-center">
-
+      <!--  target div for the logo -->
       <div class = "col-xs-3" id="targetImage">Image </div>
-
+      <!--  target div for the stream link -->
       <div class = "col-xs-3" id="targetLink">Link </div>
-
+      <!--  target div for the stream info-->
       <div class = "col-xs-6" id="targetInfo">Info</div>
 
 
