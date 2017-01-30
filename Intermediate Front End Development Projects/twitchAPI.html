@@ -57,7 +57,6 @@ $(document).ready(function(){
                 // note added imageCSS class
                 var placeholderImage = "<img src='http://sweettutos.com/wp-content/uploads/2015/12/placeholder.png' alt='placeholder' class = 'imageCSS'>";
                 $( "#targetImage" ).append( "<div class ='logo deleted'> "+placeholderImage+" </div>" );
-                $( "#targetLink" ).append( "<div class ='link deleted'> Deleted </div>" );
                 $( "#targetInfo" ).append( "<div class ='info deleted'> "+ check[i].name +"'s account has been deleted  </div>" );
               }
               else if (check[i].exists === true){
@@ -65,10 +64,9 @@ $(document).ready(function(){
                 // check online status, and add data accordingly
                 if(checkOnline[i].status === "offline" ){
 
-
+                  // added a span class in order to make the link be clickable for the entire area of the div
                   var url = "<a href='" +check[i].url + "'><span class ='link-spanner'</span> </a>";
                   $( "#targetInfo" ).append( "<div class ='info offline'> "+ check[i].name + " "+ url +" is offline </div>" );
-
 
                   var image = "<img src='"+ check[i].image +"' alt='logo' class ='imageCSS' ";
                   $( "#targetImage" ).append( "<div class ='logo offline'> " + image + " </div>" );
@@ -77,13 +75,12 @@ $(document).ready(function(){
                 //  $( "#targetLink" ).append( "<div class ='link offline'> " + url + " </div>" );
                 }
                 else if(checkOnline[i].status === "online" ){
-                  $( "#targetInfo" ).append( "<div class ='info online'> "+ checkOnline[i].extra +" </div>" );
+                  var url = "<a href='" +check[i].url + "'><span class ='link-spanner'</span> </a>";
+                  $( "#targetInfo" ).append( "<div class ='info online'> "+ checkOnline[i].extra +" " + url + " </div>" );
 
                   var image = "<img src='"+ check[i].image +"' alt='logo' class ='imageCSS' ";
                   $( "#targetImage" ).append( "<div class ='logo online'> " + image + " </div>" );
 
-                  var url = "<a href='" +check[i].url + "'> " + check[i].name + " </a>";
-                  $( "#targetLink" ).append( "<div class ='link online'> " + url + " </div>" );
                 }
               }
             }
@@ -122,9 +119,7 @@ function compare(a,b) {
     <!-- real css is higher up on line 57 -->
     <div class = "row text-center">
       <!--  target div for the logo -->
-      <div class = "col-xs-2 nopadding" id="targetImage">Image </div>
-      <!--  target div for the stream link -->
-      <div class = "col-xs-2 nopadding" id="targetLink">Link </div>
+      <div class = "col-xs-4 nopadding" id="targetImage">Image </div>    
       <!--  target div for the stream info-->
       <div class = "col-xs-8 nopadding" id="targetInfo">Info</div>
 

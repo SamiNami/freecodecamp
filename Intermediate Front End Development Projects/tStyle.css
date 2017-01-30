@@ -8,7 +8,7 @@
 body{
   background-color: #add8e6;
 }
-
+/* makes the span the entire area of the div (you can click on the div to go to the linked site) */
 .link-spanner{
   position:absolute;
     width:100%;
