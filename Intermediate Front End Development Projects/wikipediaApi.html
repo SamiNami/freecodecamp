@@ -7,6 +7,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <!-- import bootstrap -->
   <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+  <link rel="stylesheet" href="wStyle.css">
 
 </head>
 
@@ -17,6 +18,8 @@ $(document).ready(function() {
 
     window.open('https://en.wikipedia.org/wiki/Special:Random');
   });
+
+
 
   // click on the serach button if you press enter
   $("#input").keyup(function(event){
@@ -46,19 +49,20 @@ $(document).ready(function() {
             // since the objects have many keys, we only want to display things for spesific keys
             // we want the title and snippet keys
             if(key === "title"){
-            html += "<div class = 'titles'>";
-            html += "<a href='https://en.wikipedia.org/wiki/"+val[key]+"' >"+val[key]+"</a> <br>";
+            html += "<a href='https://en.wikipedia.org/wiki/"+val[key]+"' > ";
+            html += "<div class = 'titles' > "+val[key]+" <br>";
             }
 
             else if(key === "snippet"){
             html +=  val[key] + "...<br>";
-            html += "</div><br>";
+            html += "</div></a><br>";
             }
           });
 
         });
 
         $("#target").html(html);
+
       });
 
     });
@@ -76,7 +80,8 @@ $(document).ready(function() {
   <div class="container-fluid" >
     <div class = "row text-center">
       <div class = "col-xs-12  ">
-        <h1>Wikipedia</h1>
+        <img src ="http://www.userlogos.org/files/logos/mafi0z/wikipedia3.png" alt ="logo">
+
       </div>
 
     </div>
@@ -84,22 +89,23 @@ $(document).ready(function() {
     <div class = "row text-center">
       <div class = "col-xs-12 " >
 
-        <button id = "randomPage" class = "btn btn-primary" type="button">  Click here for a random article </button>
+        <button id = "randomPage" class = "btn btn-primary" type="button">  Random wikipedia article </button>
+
 
       </div>
     </div>
 
     <div class = "row text-center">
+      <div class = "col-xs-offset-2 col-xs-8 col-xs-offset-2 block text-center">
 
-      <div class = "col-xs-12">
         <!-- important to add onSubmit="retrun false" to prevent site from reloading" -->
-        <form onSubmit="return false;">
-          <input type="text" placeholder="Search Wikipedia" id ="input" >
+        <form onSubmit="return false;" class ="form group">
+          <input type="text" class="form-control"  placeholder="Search Wikipedia" id ="input" >
         </form>
         <button type="button" id="search" > Search </button>
       </div>
 
-      <div class = "col-xs-12" id="target">
+      <div class = "col-xs-offset-2 col-xs-8 col-xs-offset-2 black-text" id="target">
 
       </div>
     </div>
