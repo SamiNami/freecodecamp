@@ -9,7 +9,9 @@
   <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
   <!-- import font awsome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="XXX.css">
+  <link rel="stylesheet" href="weatherStyle.css">
+  <!-- Import Roboto font -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 
 
@@ -18,9 +20,6 @@ $(document).ready(function() {
 
   var latitude= 0;
   var longitude = 0;
-
-
-
 
   // Get the users location
 
@@ -44,8 +43,8 @@ $(document).ready(function() {
          var weather = json.weather[0].main;
          var icon = json.weather[0].icon;
 
-         $("#temp").html("Temperature: " + tempC + " ° C , Country: " + country + " " + place + ", Weather: " + weather );
-         $("#icon").html('<img src="http://openweathermap.org/img/w/'+icon+'.png" alt="weatherimage" />');
+         $("#temp").html("Temperature: " + tempC + " ° C <br> Country: " + country + ", " + place + "<br> Weather: " + weather );
+         $("#icon").html('<img src="http://openweathermap.org/img/w/'+icon+'.png" class = "image" alt="weatherimage" />');
 
          // creating a variable for the toggle button
          var check = 0;
@@ -54,34 +53,26 @@ $(document).ready(function() {
 
 
           if(check == 1){
-            $("#temp").html("Temperature: " + tempC + " ° C , Country: " + country + " " + place + ", Weather: " + weather );
+            $("#temp").html("Temperature: " + tempC + " ° C <br> Country: " + country + ", " + place + "<br> Weather: " + weather );
             check = 0;
             }
           else if(check == 0) {
-            $("#temp").html("Temperature: " + tempF + " ° F , Country: " + country + " " + place + ", Weather: " + weather );
+            $("#temp").html("Temperature: " + tempF + " ° F <br> Country: " + country + ", " + place + "<br> Weather: " + weather );
             check = 1;
             }
          });
 
         });
-        // function for rounding the temperature values
-        function round(value, precision) {
-            var multiplier = Math.pow(10, precision || 0);
-            return Math.round(value * multiplier) / multiplier;
-        }
+
 
     });
   }
 
-
-
-
-
-
-
-
-
-
+  // function for rounding the temperature values
+function round(value, precision) {
+      var multiplier = Math.pow(10, precision || 0);
+      return Math.round(value * multiplier) / multiplier;
+}
 
 });
 </script>
@@ -95,7 +86,7 @@ $(document).ready(function() {
 
 <html>
 
-  <div class="container" >
+  <div class="container well" >
 
     <div class = "row text-center">
       <div class = "col-xs-12  ">
@@ -106,6 +97,7 @@ $(document).ready(function() {
     <div class = "row text-center">
       <div class = "col-xs-12 " id ="data" >
         Allow the browser to get your location!
+
       </div>
     </div>
 

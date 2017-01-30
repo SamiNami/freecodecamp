@@ -1,0 +1,17 @@
+
+*{
+  font-family: 'Roboto', sans-serif;
+}
+
+
+body{
+  background-color: #ADD8E6;
+}
+
+.container{
+  margin-top: 5%;
+  width: 20%
+}
+.image{
+  width: 25%;
+}
