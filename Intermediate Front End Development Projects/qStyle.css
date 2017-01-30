@@ -10,6 +10,10 @@ body{
 }
 
 .container{
-  margin-top: 20%;
+  margin-top: 15%;
   width: 40%;
+}
+
+.quote{
+  height: 80px;
 }
