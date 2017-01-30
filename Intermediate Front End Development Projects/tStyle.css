@@ -6,8 +6,15 @@
 }
 
 body{
-  background-color: #add8e6;
+  background-color: #F2F4F3;
+
 }
+
+h1{
+  color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
 /* makes the span the entire area of the div (you can click on the div to go to the linked site) */
 .link-spanner{
   position:absolute;
@@ -16,12 +23,7 @@ body{
     top:0;
     left: 0;
     z-index: 1;
-  }
-
-.info{
- position: relative;
 }
-
 
 .container{
   width: 50%;
@@ -40,19 +42,52 @@ body{
 }
 
 .logo{
-  height: 100px;
-  padding: 10px;
-}
-.link{
-  height: 100px;
-  padding: 10px;
+  padding: 3%;
+  height: 80px;
+
+  border-top: white;
+  border-bottom: white;
+  border-left: white;
+  border-right: transparent;
+
+  border-right-width: 0px;
+  border-left-width: 1px;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+
+  border-style: solid;
+
 }
 
 .info{
-  height: 100px;
-  padding: 10px;
+  padding: 4%;
+  height: 80px;
+
+  border-top: white;
+  border-bottom: white;
+  border-left: transparent;
+  border-right: white;
+
+  border-right-width: 1px;
+  border-left-width: 0px;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+
+
+  border-style: solid;
+}
+/* Color styling */
+.online{
+  background-color: #26A96C;
+
+}
+.offline{
+  background-color: #284B63;
+}
+.deleted{
+  background-color: #EB5E55;
 }
 
-.online{
-  background-color: blue;
-  }
+.well{
+  background-color: #353535;
+}
