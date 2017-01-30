@@ -3,8 +3,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- import jquery -->
+  <!-- import jquery and jqery -ui -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <!-- import bootstrap -->
   <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
   <!-- import font awsome -->
@@ -20,8 +21,14 @@ $(document).ready(function() {
 
     var myQuotes="Get your quote!"
     var author = ""
+    var colors = ["#FF0000", "#800000", "#FFFF00", "#808000", "#00FF00", "#008000", "#00FFFF", "#008080", "#0000FF", "#000080", "#FF00FF", "#800080"];
 
   $("#getMessage").on("click", function(){
+    //change color
+    var randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+    $(".twitter").animate({ backgroundColor: randomColor }, 1000);
+    // Get the  quote
     $.getJSON("http://api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=?", function(json) {
       myQuotes = json.quoteText;
       author = json.quoteAuthor;
@@ -45,7 +52,7 @@ $(document).ready(function() {
 });
 </script>
 <html>
-
+  <body id="body">
   <div class="container well" >
     <div class = "row text-center">
       <div class = "col-xs-12  ">
@@ -68,5 +75,5 @@ $(document).ready(function() {
       </div>
     </div>
   </div>
-
+</body>
 </html>
