@@ -64,19 +64,16 @@ $(document).ready(function(){
                 // check online status, and add data accordingly
                 if(checkOnline[i].status === "offline" ){
 
-                  // added a span class in order to make the link be clickable for the entire area of the div
-                  var url = "<a href='" +check[i].url + "'><span class ='link-spanner'</span> </a>";
-                  $( "#targetInfo" ).append( "<div class ='info offline'> "+ check[i].name + " "+ url +" is offline </div>" );
+                  $( "#targetInfo" ).append( "<a href='" + check[i].url + "'> <div class ='info offline'> "+ check[i].name + " is offline </div> </a>" );
 
                   var image = "<img src='"+ check[i].image +"' alt='logo' class ='imageCSS' ";
                   $( "#targetImage" ).append( "<div class ='logo offline'> " + image + " </div>" );
 
-                //  var url = "<a href='" +check[i].url + "'> " + check[i].name + " </a>";
-                //  $( "#targetLink" ).append( "<div class ='link offline'> " + url + " </div>" );
+
                 }
                 else if(checkOnline[i].status === "online" ){
-                  var url = "<a href='" +check[i].url + "'><span class ='link-spanner'</span> </a>";
-                  $( "#targetInfo" ).append( "<div class ='info online'> "+ checkOnline[i].extra +" " + url + " </div>" );
+                  var url = "<a href='" +check[i].url + "'> </a>";
+                  $( "#targetInfo" ).append( "<a href='" + check[i].url + "'> <div class ='info online'> "+ checkOnline[i].extra +"  </div> </a>" );
 
                   var image = "<img src='"+ check[i].image +"' alt='logo' class ='imageCSS' ";
                   $( "#targetImage" ).append( "<div class ='logo online'> " + image + " </div>" );
