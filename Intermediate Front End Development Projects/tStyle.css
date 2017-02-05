@@ -20,6 +20,10 @@ a:link, a:hover, a:visited, a:active{
   text-decoration:none;
   }
 
+.btn{
+  border-radius: 0px;
+  margin: 1px;
+}
 .container{
   width: 50%;
 }

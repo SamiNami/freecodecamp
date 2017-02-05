@@ -15,7 +15,7 @@
 
 $(document).ready(function(){
   // array for the streams I want to GET
-  var streams = ["ESL_SC2", "freecodecamp", "summit1g", "brunofin"];
+  var streams = ["ESL_SC2", "freecodecamp", "summit1g", "brunofin", "lck1", "darkest_mage", "esl_lol"];
   // arrays to store the data in
   var check =[];
   var checkOnline = [];
@@ -87,6 +87,17 @@ $(document).ready(function(){
       }
     });
   });
+
+  $("#online").on("click", function(){
+    $(".offline").hide();
+    $(".deleted").hide();
+    });
+
+  $("#all").on("click", function(){
+    $(".offline").show();
+    $(".deleted").show();
+    });
+
 });
 
 
@@ -110,6 +121,10 @@ function compare(a,b) {
 
       <div class = "col-xs-12  ">
         <h1>Twitch Streams</h1>
+
+        <button type = "button" class = "btn pull-right" id ="all"> All </button>
+        <button type = "button" class = "btn pull-right" id="online"> Online </button>
+
       </div>
 
     </div>
