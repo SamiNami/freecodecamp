@@ -4,7 +4,6 @@ function pairElement(str) {
 
 var dna = [];
 var arr = str.split("");
-console.log(arr);
 
 arr.forEach(function(element){
   if(element === "G"){
