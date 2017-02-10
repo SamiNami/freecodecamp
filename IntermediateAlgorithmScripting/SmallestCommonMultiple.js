@@ -9,60 +9,26 @@ function smallestCommons(arr) {
     return a-b;
   });
 
-  var min = arr[0];
-  var max = arr[1];
-  var going = true;
+  var array = [];
 
-  var currentMin = min;
-  var currentMax = max;
-  var i = 1;
+  for(i = arr[0]; i <= arr[1]; i++){
+      array.push(i);
+  }
+  console.log(array);
 
-  while(going === true){
-    currentMax = max * i;
-    console.log("max is " + currentMax);
-    for(j = 1;currentMin < currentMax; j++){
-      currentMin = min *j;
-      console.log("min is " +currentMin);
-    }
-    if (currentMin === currentMax){
-      console.log("Found it", currentMin,currentMax);
-      break;
-    }
-    else{
-      i++;
+
+function checkSame(arr){
+  var first = arr[0];
+  for(i = 0; i < arr.length; i++){
+    if (first !== arr[i]){
+      return false;
     }
   }
+  return true;
 }
 
 
-smallestCommons([4527,1001]);
-
-
-
-/*
-
-
-var going = true;
-var i =1;
-
-
-while (going === true){
-
-
-  var current0 = (arr[0]) * i;
-  var current1 = arr[1] * i;
-  console.log(current0,current1);
-  if(arr[0] * i === arr[1] * i){
-
-    console.log("kappa");
-
-    going = false;
-    break;
-  }
-  i++;
-  console.log(i);
-  if(i === 100){
-    break;
-  }
 }
-*/
+
+
+smallestCommons([5,7]);

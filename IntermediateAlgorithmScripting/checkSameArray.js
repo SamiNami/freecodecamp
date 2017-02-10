@@ -1,7 +1,3 @@
-
-
-
-
 var array = [5,5,5];
 var check = true;
 
