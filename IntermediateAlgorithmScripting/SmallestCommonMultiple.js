@@ -6,16 +6,40 @@
 function smallestCommons(arr) {
   // sort the array and asign the values
   arr = arr.sort(function(a,b){
-    return a-b;
+    return a - b;
   });
 
   var array = [];
-
+  // add all the numbers
   for(i = arr[0]; i <= arr[1]; i++){
       array.push(i);
   }
-  console.log(array);
 
+  array = array.sort(function(a,b){
+    return b - a;
+  });
+
+  console.log(array);
+  var newArray = array.slice();
+  console.log(newArray);
+
+for(i = 0; i<array.length; i++){
+
+  var addition = newArray[0];
+
+    while(newArray[0] % newArray[i] !== 0){
+
+      newArray[0] += addition;
+      console.log(newArray[0]);
+    }
+
+
+    console.log("addition " + newArray[0]);
+}
+
+return newArray[0];
+
+}
 
 function checkSame(arr){
   var first = arr[0];
@@ -26,9 +50,5 @@ function checkSame(arr){
   }
   return true;
 }
-
-
-}
-
 
 smallestCommons([5,7]);

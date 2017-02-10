@@ -1,5 +1,5 @@
 var array = [5,5,5];
-var check = true;
+
 
 console.log(checkSame(array));
 
