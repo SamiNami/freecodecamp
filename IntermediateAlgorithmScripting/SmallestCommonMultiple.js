@@ -1,54 +1,46 @@
 // find the smalest common multiple,that can be evenly divided by both
 // and by all squential numbers in the range between these parameters
 
-
+// so find the smalest common multiple of each number in between the given numbers
 
 function smallestCommons(arr) {
-  // sort the array and asign the values
+  // sort the array
   arr = arr.sort(function(a,b){
     return a - b;
   });
-
+  // create a new array for all the numbers
   var array = [];
-  // add all the numbers
+  // add all the numbers from x to y and push them into the new array
   for(i = arr[0]; i <= arr[1]; i++){
       array.push(i);
   }
-
+  // sort the array from largest to smalest
   array = array.sort(function(a,b){
     return b - a;
   });
 
-  console.log(array);
-  var newArray = array.slice();
-  console.log(newArray);
-
-for(i = 0; i<array.length; i++){
-
-  var addition = newArray[0];
-
-    while(newArray[0] % newArray[i] !== 0){
-
-      newArray[0] += addition;
-      console.log(newArray[0]);
+// for each number
+for(i = 0; i < array.length; i++){
+  // variable to store the number that should be added
+  // always add by the first number in the array
+  var addition = array[0];
+    // while you can not divie the current number with the first value in the array
+    while(array[0] % array[i] !== 0){
+      // add the addition variable to the first values
+      // eventually the first value will be dividable by the current number
+      // and you can move on
+      array[0] += addition;
     }
 
 
-    console.log("addition " + newArray[0]);
+}
+// once the loop is finished it will give LCM since the fist number in the array
+// can be divded by every other number in the array.
+console.log("Leaset common multiple is " + array[0]);
+
+return array[0];
+
 }
 
-return newArray[0];
 
-}
-
-function checkSame(arr){
-  var first = arr[0];
-  for(i = 0; i < arr.length; i++){
-    if (first !== arr[i]){
-      return false;
-    }
-  }
-  return true;
-}
-
-smallestCommons([5,7]);
+smallestCommons([1,5]);
