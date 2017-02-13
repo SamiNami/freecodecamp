@@ -1,3 +1,4 @@
+/*
 var factor = function(number) {
   var result = 1;
   var count;
@@ -17,3 +18,22 @@ var factorial = function(number) {
 };
 console.log(factorial(3));
 // 720
+*/
+/*
+var test = "1011101";
+binToDec(test);
+
+function binToDec(str){
+
+  num = str.split("");
+  var ints = num.map()
+
+  console.log(num);
+}
+*/
+
+var test = "1010010";
+var int = parseInt(test);
+console.log(int);
+var nonBin = parseInt("01000001",2);
+console.log(nonBin);
