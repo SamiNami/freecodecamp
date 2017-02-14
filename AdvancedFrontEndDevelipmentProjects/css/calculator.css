@@ -1,0 +1,23 @@
+
+.container{
+  min-width: 300px;
+  max-width: 300px;
+
+  border: 1px;
+  border-style: solid;
+  border-color: black;
+}
+
+.row{
+
+}
+
+.btn{
+  
+  width: auto;
+  heigth: auto;
+  margin-top: 3px;
+}
+.long{
+  height: 95px;
+}
