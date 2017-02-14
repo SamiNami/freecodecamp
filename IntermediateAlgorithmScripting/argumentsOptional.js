@@ -44,10 +44,7 @@ if(args.length === 1){
 
 }
 
-
 }
-
-
 
 
 console.log(addTogether(2)(3));
