@@ -31,9 +31,21 @@ function binToDec(str){
   console.log(num);
 }
 */
-
+/*
 var test = "1010010";
 var int = parseInt(test);
 console.log(int);
 var nonBin = parseInt("01000001",2);
 console.log(nonBin);
+*/
+function counter() {
+    var count = 0;
+    return function() {
+        console.log(count++);
+    };
+}
+var count = counter();
+
+count();
+count();
+count();
