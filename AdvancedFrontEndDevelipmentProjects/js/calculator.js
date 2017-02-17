@@ -1,85 +1,31 @@
-// make fewer buttons!
 
 $( document ).ready(function() {
-
+  // variables for the math operations
   var number = 0;
   var series =[];
   var result ="";
+  // keeps track if the calculator should be cleard
   var clear = false;
-  var ans = false;
-  // tracks if you can use the . button / for after you pressed =
+  // tracks if you can use the . button - for after you pressed =
   var nodot =false;
   // variables for displaying
   var dnumber = "";
   var darr = [];
-  // buttons for the numbers
 
-  $("#1").click(function() {
+  // code for the number buttons
+  $("#0,#1,#2,#3,#4,#5,#6,#7,#8,#9").click(function() {
     checkClear();
-    number = 1;
+    number = this.id;
     doMath();
   });
 
-    $("#2").click(function() {
-    checkClear();
-    number = 2;
-    doMath();
-  });
-
-  $("#3").click(function() {
-    checkClear();
-    number = 3;
-    doMath();
-  });
-
-  $("#4").click(function() {
-    checkClear();
-    number = 4;
-    doMath();
-  });
-
-  $("#5").click(function() {
-    checkClear();
-    number = 5;
-    doMath();
-  });
-
-  $("#6").click(function() {
-    checkClear();
-    number = 6;
-    doMath();
-  });
-
-  $("#7").click(function() {
-    checkClear();
-    number = 7;
-    doMath();
-  });
-
-  $("#8").click(function() {
-    checkClear();
-    number = 8;
-    doMath();
-  });
-
-  $("#9").click(function() {
-    checkClear();
-    number = 9;
-    doMath();
-  });
-
-  $("#0").click(function() {
-    checkClear();
-    number = 0;
-    doMath();
-  });
-  // very similiar to numbers
+  // code for when you click the dot button
   $("#dot").click(function() {
     // prevents chaining of dots
     if(!checkSame()){
       // checks if . is already in the series array
       // it it's not, you can add a .
-      if(series.indexOf(".") === -1 ){
+      if(darr.indexOf(".") === -1 ){
         // prevents dots from being typed after a =
         if( nodot === false){
           number = ".";
@@ -90,52 +36,42 @@ $( document ).ready(function() {
   });
 
   // math opperators
-  $("#add").click(function() {
+  $("#add,#sub,#mul,#div").click(function() {
+    console.log(this.id);
     if(!checkSame()){
-      number = "+";
-      doOpp();
-    }
 
-  });
+      switch (this.id) {
 
-  $("#sub").click(function() {
-    if(!checkSame()){
-      number = "-";
-      doOpp();
-    }
-  });
-
-  $("#mul").click(function() {
-    if(!checkSame() && !preventStart()){
-      number = "*";
-      doOpp();
-    }
-  });
-
-  $("#div").click(function() {
-    if(!checkSame() && !preventStart()){
-      number = "/";
+        case "add":
+          number = "+";
+          break;
+        case "sub":
+          number = "-";
+          break;
+        case "mul":
+          number = "*";
+          break;
+        case "div":
+          number = "/";
+      }
       doOpp();
     }
   });
 
   // other opperators
-
+  // ac resets the calculator
   $("#ac").click(function() {
     clean();
     $('.top-panel').text(0);
     $('.bottom-panel').text(0);
   });
-  // not sure
+  // this button takes you one step back
   $("#ce").click(function() {
-
 
     number = 0;
     result = "";
     series.pop();
-
     darr.pop();
-
 
     if(darr[0]  === undefined ){
       $('.top-panel').text("0");
@@ -146,7 +82,6 @@ $( document ).ready(function() {
     }
     else{
     dnumber = darr.join("");
-
     $('.top-panel').text(result + eval(dnumber));
     result = series.join("");
     $('.bottom-panel').text(result);
@@ -155,11 +90,7 @@ $( document ).ready(function() {
 
   $("#equ").click(function() {
     if(!checkSame()){
-
-
-
         result = series.join("");
-
         result = eval(result);
         result = roundToTwo(result);
 
@@ -167,7 +98,7 @@ $( document ).ready(function() {
         series =[];
         series[0] = number;
         darr = [];
-        darr[0] = number;
+        darr = number;
 
         clear = true;
         nodot = true;
@@ -175,8 +106,6 @@ $( document ).ready(function() {
 
         // turn it back into a string so I can mesure the length
         result = String(result);
-
-
 
         if(result.length > 14){
           clean();
@@ -223,6 +152,7 @@ function doMath(){
     dnumber = darr.join("");
     $('.top-panel').text(dnumber);
     darr = [];
+    nodot = false;
   }
 // checks if the calculator is supposed to clear the array
   function checkClear(){
@@ -234,7 +164,7 @@ function doMath(){
       nodot = false;
     }
   }
-// prevents 2 operators from being chained
+  // prevents 2 operators from being chained
   function checkSame(){
     if(series[series.length-1] === "+" || series[series.length-1] === "-" || series[series.length-1] === "*" || series[series.length-1] === "/" || series[series.length-1] === "." )  {
         return true;
@@ -258,7 +188,5 @@ function doMath(){
   function roundToTwo(num) {
       return +(Math.round(num + "e+2")  + "e-2");
   }
-
-
 
 });
