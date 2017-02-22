@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="pomodoro" content="">
+    <meta name="Sami Peralahti" content="">
+
+
+    <title>Pomodoro Clock</title>
+
+
+<!-- jqery  -->
+<script src="js/jquery-3.1.1.min.js"></script>
+
+<!-- my js -->
+<script src="js/pomodoro.js"></script>
+
+<!-- theather (needed for bootstrap) -->
+<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+<!-- Latest compiled and minified CSS bootstrap -->
+<!-- using the bootstrap cyborg theme https://bootswatch.com/ -->
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" >
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<!-- my css -->
+<link rel="stylesheet" href="css/pomodoro.css">
+
+
+  </head>
+
+  <body>
+
+  <div class="container theme-showcase" role="main">
+
+    <div class ="pomodoro text-center">
+
+      <div class="row text-center">
+
+      <div class="col-lg-12">
+        <h1>Pomodoro Clock</h1>
+      </div>
+
+    </div>
+    <div class="row text-center">
+
+      <div class="col-lg-offset-2 col-lg-4">
+
+        <div class="panel panel-default">
+
+          <div class="panel-body text-center">
+            <p class="top-panel">Break Time</p>
+
+            <p class="top-panel"><span class="brake-">-</span> 5 <span class="brake+">+</span></p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-4 ">
+        <div class="panel panel-default">
+
+          <div class="panel-body text-center">
+            <p class="top-panel">Countdown Time</p>
+
+            <p class="top-panel"><span class="cd-">-</span> <span class="cd">2</span> <span class="cd+">+</span></p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row text-center">
+      <div class="col-lg-offset-5 col-lg-2">
+
+          <div class="countdownarea">
+            <p class="cdinfo">CountDown</p>
+            <p class="countdown">0</p>
+          </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+  </div> <!-- Main jumbotron for a primary marketing message or call to action -->
+
+
+  </body>
+</html>

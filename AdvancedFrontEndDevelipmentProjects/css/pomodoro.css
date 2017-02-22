@@ -1,0 +1,35 @@
+
+.container{
+  min-width: 300px;
+  max-width: 50%;
+
+  margin-top:20px;
+  padding-bottom:10px;
+
+}
+
+
+.pomodoro{
+
+  border: 1px;
+  border-style: solid;
+  border-color: white;
+}
+
+.cdtest{
+    border-color: white;
+}
+
+
+
+.countdownarea{
+  border-radius: 10px;
+  background: black;
+
+  border: 1px;
+  border-style: solid;
+  border-color: white;
+
+  color:white;
+
+}

@@ -37,7 +37,6 @@ $( document ).ready(function() {
 
   // math opperators
   $("#add,#sub,#mul,#div").click(function() {
-    console.log(this.id);
     if(!checkSame()){
 
       switch (this.id) {
