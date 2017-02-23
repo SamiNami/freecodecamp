@@ -1,4 +1,9 @@
 
+
+body {
+    font-size: 20px;
+}
+
 .container{
   min-width: 300px;
   max-width: 50%;
@@ -9,27 +14,21 @@
 }
 
 
-.pomodoro{
-
-  border: 1px;
-  border-style: solid;
-  border-color: white;
+.progress{
+   margin-top: 5px;
+   border: 1px;
+   border-style: solid;
+   color:white;
 }
 
-.cdtest{
-    border-color: white;
-}
-
-
-
-.countdownarea{
-  border-radius: 10px;
-  background: black;
-
+.panel-default{
+  height: 120px;
   border: 1px;
   border-style: solid;
-  border-color: white;
-
   color:white;
+}
 
+.hand{
+  cursor: pointer;
+   cursor: hand;
 }

@@ -49,8 +49,10 @@ $(".reset").click(function(){
   clearTotal = true;
   preventClick = false;
 
-  total = countdown * 60;  
+  total = countdown * 60;
   current =0;
+  $(".start").text("Start");
+
   $(".countdown").text(countdown);
   $(".cd").text(countdown);
 });
