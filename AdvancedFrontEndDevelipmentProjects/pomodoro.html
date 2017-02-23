@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,30 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="pomodoro" content="">
+    <meta name="Pomodoro" content="A pomodoro countdown clock.">
     <meta name="Sami Peralahti" content="">
-
 
     <title>Pomodoro Clock</title>
 
 
-<!-- jqery  -->
+<!-- Jqery  -->
 <script src="js/jquery-3.1.1.min.js"></script>
 
-<!-- my js -->
+<!-- My js -->
 <script src="js/pomodoro.js"></script>
 
-<!-- theather (needed for bootstrap) -->
+<!-- Theather (needed for bootstrap) -->
 <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
-<!-- Latest compiled and minified CSS bootstrap -->
-<!-- using the bootstrap cyborg theme https://bootswatch.com/ -->
+
+<!-- Bootstrap cyborg theme https://bootswatch.com/ -->
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" >
 
-
-<!-- Latest compiled and minified JavaScript -->
+<!-- Bootstrap JavaScript -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
 
-<!-- my css -->
+<!-- Css -->
 <link rel="stylesheet" href="css/pomodoro.css">
 
 
@@ -42,59 +39,51 @@
     <div class ="pomodoro text-center">
 
       <div class="row text-center">
-
-      <div class="col-lg-12">
-        <h1>Pomodoro Clock</h1>
-      </div>
-
-    </div>
-    <div class="row text-center">
-
-      <div class="col-lg-offset-2 col-lg-4">
-
-
-        <div class="panel panel-default">
-
-          <div class="panel-body text-center">
-            <p class="top-panel">Adjust Time</p>
-
-            <p class="top-panel"><span class="cd- hand">-</span> <span class="cd">25</span> <span class="cd+ hand">+</span></p>
-          </div>
-
+        <div class="col-lg-12">
+          <h1>Pomodoro Clock</h1>
         </div>
       </div>
 
+    <div class="row text-center">
+
+      <div class="col-lg-offset-2 col-lg-4">
+        <div class="panel panel-default">
+          <div class="panel-body text-center">
+            <p class="top-panel">Adjust Time</p>
+            <p class="top-panel"><span class="cd- hand">-</span> <span class="cd">25</span> <span class="cd+ hand">+</span></p>
+          </div>
+        </div>
+      </div>
 
       <div class=" col-lg-4">
-
           <div class="panel panel-default countdownarea">
             <p class="cdinfo">Countdown</p>
             <p class="countdown">0</p>
             <p class="start">Start</p>
           </div>
-
       </div>
 
     </div>
 
     <div class="row text-center">
-      <div class="col-lg-offset-2 col-lg-8">
 
+      <div class="col-lg-offset-2 col-lg-8">
         <div class="progress">
         <div class="progress-bar" style="width: 0%"></div>
         </div>
       </div>
+
     </div>
 
     <div class="row text-center">
+
       <div class="col-lg-offset-5 col-lg-2">
-
         <a href="#" class="btn btn-default reset">Reset Timer</a>
-
       </div>
+
     </div>
 
-  </div>
+  </div> <!-- end of pomodoro class -->
 
   </div> <!-- Main jumbotron for a primary marketing message or call to action -->
 

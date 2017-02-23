@@ -1,18 +1,14 @@
 
-
-body {
+body{
     font-size: 20px;
 }
 
 .container{
   min-width: 300px;
   max-width: 50%;
-
   margin-top:20px;
   padding-bottom:10px;
-
 }
-
 
 .progress{
    margin-top: 5px;
