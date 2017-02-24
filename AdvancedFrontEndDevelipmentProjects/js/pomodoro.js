@@ -3,9 +3,9 @@ $(document).ready(function(){
 
   var countdown = parseInt( $(".cd").html() );
   var seconds = 0;
-  var interval;
+  var interval = function(){};
   // amount of total seconds
-  var total;
+  var total = 0;
   // varible for the current amount of seconds
   var current = 0;
   // keeps track if the progress-bar should be cleared
