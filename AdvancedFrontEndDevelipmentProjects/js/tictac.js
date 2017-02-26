@@ -30,26 +30,35 @@ $(".responsive-square").click(function(){
     $(this).children('.content').children(".table").children(".table-cell").text(player);
     var position = $(this).children('.content').children(".table").children(".table-cell").attr('class').split(' ')[1];
     game[position] = player;
-    console.log(game);
     checkWin();
-
-    // write what the computer is supposed to do
-
-
-
+    checkDraw();
+    //spotsleft returns an array with the free spots loft
+    var spots = spotsLeft();
+    // checks if there are any spots left
+    if(spots.length > 1){
+    computerMove(spots);
+    }
 });
 
 
+function computerMove(spots){
 
-
-
+  var target = spots[Math.floor(Math.random() * spots.length)];
+  $("."+target).text(cpu);
+  game[target] = cpu;
+  checkWin();
+}
 
 
 function checkWin(){
-  leftToRight();
-  topToBottom();
-  diagonal();
+  // needs a delay so to move can be displayed
+  setTimeout(function(){
+    leftToRight();
+    topToBottom();
+    diagonal();
+  }, 10);
 }
+
 
 function leftToRight(){
   if(game.topleft === game.topmid && game.topmid === game.topright){
@@ -81,6 +90,7 @@ function leftToRight(){
   }
 }
 
+
 function topToBottom(){
   if(game.topleft === game.midleft && game.midleft === game.botleft){
     if(player === game.midleft){
@@ -111,6 +121,7 @@ function topToBottom(){
   }
 }
 
+
 function diagonal(){
   if(game.topleft === game.mid && game.mid === game.botright){
     if(player === game.mid){
@@ -132,6 +143,7 @@ function diagonal(){
   }
 }
 
+
 function clear(){
   var i = 1;
   for(var key in game){
@@ -139,9 +151,32 @@ function clear(){
     $("."+key).text("");
     i++;
   }
+  console.log("cleared " + game);
 }
 
 
+function spotsLeft(){
+  var remaining = [];
+  for(var key in game){
+
+    if(game[key] !== "X" && game[key] !== "O"){
+      remaining.push(key);
+    }
+
+  }
+  return remaining;
+}
+
+
+function checkDraw(){
+  setTimeout(function(){
+    var spots = spotsLeft();
+    if (spots.length < 1){
+      alert("It's a draw!");
+      clear();
+    }
+  }, 10);
+}
 
 
 });
