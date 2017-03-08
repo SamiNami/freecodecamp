@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="Simon" content="Simon game.">
+    <meta name="Sami Peralahti" content="">
+
+    <title>Simon Game</title>
+
+
+<!-- Jqery  -->
+<script src="js/jquery-3.1.1.min.js"></script>
+
+<!-- My js -->
+<script src="js/simon.js"></script>
+
+<!-- Theather (needed for bootstrap) -->
+<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+
+<!-- Bootstrap paper theme https://bootswatch.com/ -->
+<link rel="stylesheet" href="bootstrap/css/paper.min.css" >
+
+<!-- Bootstrap JavaScript -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Css -->
+<link rel="stylesheet" href="css/simon.css">
+
+<!-- Bootstrap Toggle -->
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+
+  </head>
+
+  <body>
+
+
+
+  <div class="container text-center" role="main">
+
+
+      <div class="row text-center">
+        <div class="col-lg-12">
+          <div class="wrapper">
+            <div class="back">
+
+              <div class="pad shape1" id="1">
+                <audio preload="auto" class="sound1">
+                  <source src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" type="audio/mpeg"/>
+                </audio>
+              </div>
+
+              <div class="pad shape2" id="2">
+                <audio preload="auto" class="sound2">
+                  <source src="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3" type="audio/mpeg"/>
+                </audio>
+              </div>
+
+              <div class="pad shape3" id="3">
+                <audio preload="auto" class="sound3">
+                  <source src="https://s3.amazonaws.com/freecodecamp/simonSound3.mp3" type="audio/mpeg"/>
+                </audio>
+              </div>
+
+              <div class="pad shape4" id="4">
+                <audio preload="auto" class="sound4">
+                  <source src="https://s3.amazonaws.com/freecodecamp/simonSound4.mp3" type="audio/mpeg"/>
+                </audio>
+              </div>
+
+              <div class="circle text-center">
+                <div class="simon-text">Simon</div>
+
+                <div class="panel">
+                    <p class="panel-text">- -</p>
+                </div>
+
+
+                <button class="btn start" type="button">Start</button>
+
+                <button class="btn strickt" type="button">Strickt</button>
+
+                <input type="checkbox" data-toggle="toggle" data-onstyle="danger">
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+  </div> <!-- Main jumbotron for a primary marketing message or call to action -->
+
+
+  </body>
+</html>
