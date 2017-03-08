@@ -1,6 +1,7 @@
 
 $( document ).ready(function(){
 
+// variables to store if the plyaer/computer is X or O
 var player ="";
 var cpu ="";
 
@@ -23,7 +24,7 @@ $(".O").click(function(){
   $( ".modal").hide();
 });
 
-//
+
 
 $(".responsive-square").click(function(){
     // create if to make sure it's empty
@@ -151,7 +152,6 @@ function clear(){
     $("."+key).text("");
     i++;
   }
-  console.log("cleared " + game);
 }
 
 
