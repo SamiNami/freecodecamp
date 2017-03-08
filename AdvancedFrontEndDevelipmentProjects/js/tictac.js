@@ -35,7 +35,7 @@ $(".responsive-square").click(function(){
     //spotsleft returns an array with the free spots loft
     var spots = spotsLeft();
     // checks if there are any spots left
-    if(spots.length > 1){
+    if(spots.length >= 1){
     computerMove(spots);
     }
 });
