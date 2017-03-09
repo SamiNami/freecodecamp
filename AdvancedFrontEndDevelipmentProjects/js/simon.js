@@ -48,9 +48,9 @@ myLoop(i, sequence);
 // loop used to show
 function myLoop (i, arr) {
    setTimeout(function () {
-     turnOn(i, arr);
-     playSound(i, arr);
-     turnOff(i, arr);
+     turnOn(arr[i]);
+     playSound(arr[i]);
+     turnOff(arr[i]);
       i++;
       if (i < arr.length) {
          myLoop(i, arr);
@@ -59,20 +59,20 @@ function myLoop (i, arr) {
 }
 
 // turns the light on
-function turnOn(i, arr){
-  $('#'+ arr[i]).css("opacity","1.0");
+function turnOn(int){
+  $('#'+ int).css("opacity","1.0");
 }
 
 // turns the light off after 500ms
-function turnOff(i, arr){
+function turnOff(int){
   setTimeout(function () {
-  $('#'+ arr[i]).css("opacity","0.5");
+  $('#'+ int).css("opacity","0.5");
   }, 500);
 }
 
 // plays the sound...
-function playSound(i, arr){
-  document.getElementById('sound' + arr[i]).play();
+function playSound(int){
+  document.getElementById('sound' + int).play();
 }
 
 
@@ -86,13 +86,12 @@ function clear(){
 $("#1,#2,#3,#4").click(function(){
   if(canClick){
 
-
     var buttonNumber = parseInt(this.id);
-/*
-    turnOn(buttonNumber, sequence);
-    playSound(buttonNumber, sequence);
-    turnOff(buttonNumber, sequence);
-*/
+    // shows/sounds the click
+    turnOn(buttonNumber);
+    playSound(buttonNumber);
+    turnOff(buttonNumber);
+
     playerSequence.push(buttonNumber);
     // compare that the current step is the same as in the sequence
     checkStep();
@@ -103,8 +102,6 @@ $("#1,#2,#3,#4").click(function(){
         addStepSqeuence();
         showSequence();
       }
-
-
 
   }
 });
