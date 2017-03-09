@@ -93,14 +93,16 @@ $("#1,#2,#3,#4").click(function(){
     turnOff(buttonNumber);
 
     playerSequence.push(buttonNumber);
-    // compare that the current step is the same as in the sequence
+    // compare the current step to the same step in the sequence
     checkStep();
 
     if(arraysEqual(playerSequence, sequence)){
         playerSequence = [];
         pStep = 0;
-        addStepSqeuence();
-        showSequence();
+        setTimeout(function () {
+          addStepSqeuence();
+          showSequence();
+        }, 500);
       }
 
   }
@@ -111,9 +113,14 @@ function checkStep(){
   var check = sequence.slice(pStep, pStep + 1);
 
   if(check.indexOf(playerSequence[pStep]) !== 0){
-        playerSequence = [];
-        pStep = 0;
-        showSequence();
+        showFail();
+
+        setTimeout(function () {
+          playerSequence = [];
+          pStep = 0;
+          showSequence();
+        }, 3000);
+
     }
   else{
     pStep++;
@@ -131,7 +138,19 @@ function arraysEqual(arr1, arr2){
     return true;
 }
 
+function showFail(){
 
+  setTimeout(function () {
+    $(".panel-text").text("! !");
+  }, 500);
+
+  setTimeout(function () {
+    $(".panel-text").text("- -");
+  }, 2900);
+
+
+
+}
 
 
 
