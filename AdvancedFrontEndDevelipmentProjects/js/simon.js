@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-
+  // future note: use an overlay instead of the canClick variable
 var canClick = false;
 var sequence = [];
 var playerSequence = [];
@@ -27,9 +27,12 @@ $(function setClick() {
 $(".start").click(function(){
   // only works if the toggle is switched on
   if(canClick){
+  canClick = false;
+
   // reset the sequence
   clear();
   addStepSqeuence();
+  displaySequenceLenght();
   showSequence();
   }
 });
@@ -42,7 +45,7 @@ function addStepSqeuence(){
 
 function showSequence(){
 var i = 0;
-myLoop(i, sequence);
+  myLoop(i, sequence);
 }
 
 // loop used to show
@@ -65,8 +68,10 @@ function turnOn(int){
 
 // turns the light off after 500ms
 function turnOff(int){
+  canClick = false;
   setTimeout(function () {
-  $('#'+ int).css("opacity","0.5");
+    $('#'+ int).css("opacity","0.5");
+    canClick = true;
   }, 500);
 }
 
@@ -75,16 +80,22 @@ function playSound(int){
   document.getElementById('sound' + int).play();
 }
 
-
 function clear(){
    sequence = [];
    playerSequence = [];
    pStep = 0;
 }
 
+function displaySequenceLenght(){
+  var length = sequence.length;
+  $(".panel-text").text(length);
+}
+
 
 $("#1,#2,#3,#4").click(function(){
   if(canClick){
+
+
 
     var buttonNumber = parseInt(this.id);
     // shows/sounds the click
@@ -97,14 +108,24 @@ $("#1,#2,#3,#4").click(function(){
     checkStep();
 
     if(arraysEqual(playerSequence, sequence)){
+        if(checkWin()){
+          $(".panel-text").text("WIN");
+          setTimeout(function () {
+            $(".start").click();
+          }, 2900);
+
+        }
+        else{
+        canClick = false;
         playerSequence = [];
         pStep = 0;
         setTimeout(function () {
           addStepSqeuence();
+          displaySequenceLenght();
           showSequence();
         }, 500);
+        }
       }
-
   }
 });
 
@@ -113,14 +134,23 @@ function checkStep(){
   var check = sequence.slice(pStep, pStep + 1);
 
   if(check.indexOf(playerSequence[pStep]) !== 0){
+        canClick = false;
         showFail();
 
-        setTimeout(function () {
-          playerSequence = [];
-          pStep = 0;
-          showSequence();
-        }, 3000);
+        if(strickt === false){
+          setTimeout(function () {
+            playerSequence = [];
+            pStep = 0;
+            showSequence();
+          }, 3000);
+        }
+        else{
 
+          setTimeout(function () {
+          $(".start").click();
+        }, 2900);
+
+        }
     }
   else{
     pStep++;
@@ -145,13 +175,38 @@ function showFail(){
   }, 500);
 
   setTimeout(function () {
-    $(".panel-text").text("- -");
+    displaySequenceLenght();
   }, 2900);
 
 
 
 }
 
+// Code for the strickt mode
+// Strickt mode tracker
+var strickt = false;
+
+
+$(".strickt").click(function(){
+  // only works if the toggle is switched on
+  if(canClick){
+    if(strickt === false){
+    strickt = true;
+    $('.strickt').css("opacity","0.9");
+    }
+    else{
+      strickt = false;
+      $('.strickt').css("opacity","0.5");
+    }
+
+  }
+});
+
+function checkWin(){
+  if(sequence.length === 20){
+    return true;
+  }
+}
 
 
 });
