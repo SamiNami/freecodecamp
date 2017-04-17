@@ -27,7 +27,7 @@ function spinalCase(str) {
   // replace all spaces with a dash, and remove all underscores
   // also set it to lowercase
   stringer = stringer.replace(/ /g,"-").replace(/_/g,"").toLowerCase();
-  return stringer;
+  console.log(stringer);
 
 }
 spinalCase('The_Andy_Griffith_Show');

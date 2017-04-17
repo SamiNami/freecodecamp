@@ -15,7 +15,7 @@ function sumFibs(num) {
     i = first + second;
     first = second;
     second = i;
-    // only add the number to sum it it's uneven
+    // only add the number to sum if it's uneven
     if (i % 2 !== 0){
     sum += i;
     }
@@ -24,7 +24,7 @@ function sumFibs(num) {
   return sum;
 }
 
-sumFibs(75025);
+console.log(sumFibs(75025));
 
 
 // looked up a cleaner solution
