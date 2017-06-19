@@ -1,0 +1,16 @@
+body
+  background-color: #A9A9A9
+img
+  height: 50px
+  width: 50px
+
+.list-group-item
+  background-color: #90EE90
+
+.title
+  margin-top: 15px
+
+.list-head
+  border-top-left-radius: 10px
+  border-top-right-radius: 10px
+  
