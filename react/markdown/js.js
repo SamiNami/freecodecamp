@@ -1,48 +1,107 @@
 
-// needs to import  https://github.com/chjj/marked
+class LeaderBoard extends React.Component{
 
-class MarkDown extends React.Component {
+   constructor(props) {
+    super(props);
 
-	constructor(props) {
-        super(props);
-        this.state = {value: 'Heading\n=======\n\nSub-heading\n-----------\n \n### Another deeper heading\n \nParagraphs are separated\nby a blank line.\n\nLeave 2 spaces at the end of a line to do a  \nline break\n\nText attributes *italic*, **bold**, \n`monospace`, ~~strikethrough~~ .\n\nShopping list:\n\n  * apples\n  * oranges\n  * pears\n\nNumbered list:\n\n  1. apples\n  2. oranges\n  3. pears\n\nThe rain---not the reign---in\nSpain.\n\n *[Herman Fassett](https://freecodecamp.com/hermanfassett)*'};
+    this.state = {
+      users: [{
+        username: "Loading...",
+        recent: "Loading...",
+        alltime: "Loading..."
+      }],
+      url: "recent"
+    };
 
-				this.handleChange = this.handleChange.bind(this);
-      }
-
-
-	handleChange(event) {
-    this.setState({value: event.target.value});
+  }
+  // is invoked after the component is mounted! Great for ajax requests.
+  componentDidMount() {
+    this.getData("recent");
   }
 
-	createMarkup(text) {
-		// sanitizing the text to prevent XSS
-		let returnText = marked(text,{sanitize: true});
-		return {__html: returnText};
-	}
+  getData(url){
+    axios.get("https://fcctop100.herokuapp.com/api/fccusers/top/" + url)
+      .then(res => {
+        const users = res.data;
+        this.setState({ users });
+      });
+  }
+
 
   render() {
-    return (
 
-				<div className="container">
+    return(
+      <div className ="container">
+        <ol className="list-group">
+          <h1 className ="text-center title">Leaderboard</h1>
 
-					<div className="row">
-						<div className="col-md-6">
-						<textarea className="textarea" value={this.state.value} onChange={this.handleChange} />
-						</div>
+          <ListHeader users ={this.state.users} getData ={this.getData.bind(this)} />
 
-						<div className="col-md-6">
-						<div dangerouslySetInnerHTML={this.createMarkup(this.state.value)} />
-						</div>
-					</div>
-				</div>
 
+
+          {this.state.users.map((user,index) =>
+
+
+            <li className ="list-group-item" key={user.username}>
+
+             <div className="col-md-1">
+              {index +1}
+             </div>
+
+             <div className="col-md-6">
+              <img className="img-thumbnail" src={user.img}/>
+              <a href={"https://www.freecodecamp.com/" + user.username}>{user.username}</a>
+             </div>
+
+
+
+              <div className="col-md-3 text-center">
+              {user.recent}
+             </div>
+
+             <div className="col-md-2 text-center">
+              {user.alltime}
+             </div>
+
+            </li>
+          )}
+        </ol>
+
+      </div>
     )
   }
 }
 
+class ListHeader extends React.Component{
+
+
+  render(){
+    return(
+      <li className ="list-group-item list-head" key="header">
+              <div className="col-md-1">
+              #
+              </div>
+
+              <div className="col-md-6">
+              Camper Name
+              </div>
+
+              <div className="col-md-3 text-center">
+                <button type="button" className="btn"  onClick={() => { this.props.getData("recent") }}>Sort by Recent</button>
+              </div>
+
+              <div className="col-md-2 text-center">
+                <button type="button" className="btn"   onClick={() => { this.props.getData("alltime") }}> Sort by All Time</button>
+              </div>
+
+
+            </li>
+    )
+  }
+
+}
 
 ReactDOM.render(
-  <MarkDown />,
+  <LeaderBoard />,
   document.getElementById('root')
 );
