@@ -35,36 +35,9 @@ class LeaderBoard extends React.Component{
         <ol className="list-group">
           <h1 className ="text-center title">Leaderboard</h1>
 
-          <ListHeader users ={this.state.users} getData ={this.getData.bind(this)} />
+          <ListHeader users={this.state.users} getData ={this.getData.bind(this)} />
+          <ListItems users={this.state.users}/>
 
-
-
-          {this.state.users.map((user,index) =>
-
-
-            <li className ="list-group-item" key={user.username}>
-
-             <div className="col-md-1">
-              {index +1}
-             </div>
-
-             <div className="col-md-6">
-              <img className="img-thumbnail" src={user.img}/>
-              <a href={"https://www.freecodecamp.com/" + user.username}>{user.username}</a>
-             </div>
-
-
-
-              <div className="col-md-3 text-center">
-              {user.recent}
-             </div>
-
-             <div className="col-md-2 text-center">
-              {user.alltime}
-             </div>
-
-            </li>
-          )}
         </ol>
 
       </div>
@@ -74,10 +47,10 @@ class LeaderBoard extends React.Component{
 
 class ListHeader extends React.Component{
 
-
   render(){
     return(
       <li className ="list-group-item list-head" key="header">
+
               <div className="col-md-1">
               #
               </div>
@@ -94,12 +67,45 @@ class ListHeader extends React.Component{
                 <button type="button" className="btn"   onClick={() => { this.props.getData("alltime") }}> Sort by All Time</button>
               </div>
 
+            </li>
+    )
+  }
+}
+
+class ListItems extends React.Component{
+
+  render(){
+    return(<div>
+        {this.props.users.map((user,index) =>
+
+            <li className ="list-group-item" key={user.username}>
+
+             <div className="col-md-1">
+              {index + 1}
+             </div>
+
+             <div className="col-md-6">
+              <img className="img-thumbnail" src={user.img}/>
+              <a href={"https://www.freecodecamp.com/" + user.username}>{user.username}</a>
+             </div>
+
+             <div className="col-md-3 text-center">
+              {user.recent}
+             </div>
+
+             <div className="col-md-2 text-center">
+              {user.alltime}
+             </div>
 
             </li>
+          )}
+      </div>
+
     )
   }
 
 }
+
 
 ReactDOM.render(
   <LeaderBoard />,
