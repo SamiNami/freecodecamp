@@ -39,6 +39,19 @@ class Box extends React.Component {
     console.log(recipeBook);
   }
 
+  deleteIngredient(ingredient) {
+    console.log(ingredient);
+
+    let array = this.state.recipeBook.filter(function(recipe) {
+    return recipe.title !== ingredient;
+    });
+
+    console.log(array);
+
+    this.setState({recipeBook:array});
+  }
+
+
   render() {
 
     return (
@@ -47,7 +60,7 @@ class Box extends React.Component {
 					<div className="well">
 
                {this.state.recipeBook.map((recipe) =>
-                <Dropdown title={recipe.title} ingredients= {recipe.ingredients} />)}
+                <Dropdown deleteIngredient={this.deleteIngredient.bind(this)} title={recipe.title} ingredients= {recipe.ingredients} />)}
 					</div>
 
         <div className="row">
@@ -134,6 +147,8 @@ class Dropdown extends React.Component {
     this.state = {};
   }
 
+
+
   render() {
     return (
       <div>
@@ -158,7 +173,7 @@ class Dropdown extends React.Component {
                   </tbody>
                 </Table>
 
-              <Button bsStyle="danger" onClick={() => {this.handleClick()} }>Delete</Button>
+              <Button  bsStyle="danger" onClick={() => {this.props.deleteIngredient(this.props.title)} }>Delete</Button>
               <Button  onClick={() => {this.handleClick()} }>Edit</Button>
 
             </Well>
