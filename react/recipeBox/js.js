@@ -2,6 +2,9 @@ var Button = ReactBootstrap.Button;
 var Modal = ReactBootstrap.Modal;
 var FormGroup = ReactBootstrap.FormGroup;
 var FormControl = ReactBootstrap.FormControl;
+var Collapse = ReactBootstrap.Collapse;
+var Well = ReactBootstrap.Well;
+var Table = ReactBootstrap.Table;
 
 class Box extends React.Component {
 
@@ -11,23 +14,23 @@ class Box extends React.Component {
         this.state = {recipeBook: [
           {
            title: "tomatosoup",
-           ingreedients: ["tomato","water"]
+           ingredients: ["tomato","water"]
           },
           {
            title: "pizza",
-           ingreedients: ["tomato","pineapple","ham"]
+           ingredients: ["tomato","pineapple","ham"]
           }
         ]};
 
 
   }
 
-  updateRecipeBook(title,ingreedients) {
+  updateRecipeBook(title,ingredients) {
     let recipeBook = this.state.recipeBook.slice();
 
     const newObj = {
       title: title,
-      ingreedients: ingreedients
+      ingredients: ingredients
     }
 
     recipeBook.push(newObj);
@@ -41,9 +44,10 @@ class Box extends React.Component {
     return (
 			 <div className="container">
 
-					<div className="well well">
+					<div className="well">
+
                {this.state.recipeBook.map((recipe) =>
-                <div>{recipe.title}</div>)}
+                <Dropdown title={recipe.title} ingredients= {recipe.ingredients} />)}
 					</div>
 
         <div className="row">
@@ -96,7 +100,7 @@ const ModalButton = React.createClass({
 
             <FormGroup>
               <ReactBootstrap.ControlLabel>Ingredients</ReactBootstrap.ControlLabel>
-              <FormControl componentClass="textarea" placeholder="Enter ingredients separated by comma" ref="ingreedients"/>
+              <FormControl componentClass="textarea" placeholder="Enter ingredients separated by comma" ref="ingredients"/>
             </FormGroup>
 
           </Modal.Body>
@@ -112,18 +116,59 @@ const ModalButton = React.createClass({
     // Get the underlying <input> DOM element
     return ReactDOM.findDOMNode(this.refs.title);
   },
-  getFormControlNodeIngreedients: function() {
-    return ReactDOM.findDOMNode(this.refs.ingreedients);
+  getFormControlNodeingredients: function() {
+    return ReactDOM.findDOMNode(this.refs.ingredients);
   },
   handleClick: function(){
     const title = this.getFormControlNodeTitle().value;
-    const ingreedients = this.getFormControlNodeIngreedients().value.split(",");
-    this.props.updateRecipeBook(title,ingreedients);
+    const ingredients = this.getFormControlNodeingredients().value.split(",");
+    this.props.updateRecipeBook(title,ingredients);
     this.setState({ showModal: false });
   }
 });
 
+class Dropdown extends React.Component {
+  constructor(...args) {
+    super(...args);
 
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <div>
+
+        <Button bsStyle="link" onClick={ ()=> this.setState({ open: !this.state.open })}>
+          {this.props.title}
+        </Button>
+
+        <Collapse in={this.state.open}>
+          <div>
+
+            <Well>
+              <h2 className="text-center">Ingredients</h2>
+
+                <Table striped bordered condensed hover>
+                  <tbody>
+
+                    {this.props.ingredients.map((ingredient) =>
+                      <tr>{ingredient}</tr>
+                    )}
+
+                  </tbody>
+                </Table>
+
+              <Button bsStyle="danger" onClick={() => {this.handleClick()} }>Delete</Button>
+              <Button  onClick={() => {this.handleClick()} }>Edit</Button>
+
+            </Well>
+
+          </div>
+        </Collapse>
+      </div>
+    );
+  }
+}
 
 
 
