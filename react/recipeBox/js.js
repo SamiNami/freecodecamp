@@ -140,6 +140,74 @@ const ModalButton = React.createClass({
   }
 });
 
+
+const ModalButtonEdit = React.createClass({
+
+
+  getInitialState() {
+    return { showModal: false };
+  },
+
+  close() {
+    this.setState({ showModal: false });
+  },
+
+  open() {
+    this.setState({ showModal: true });
+  },
+
+  render() {
+
+    return (
+      <div>
+
+        <Button
+          onClick={this.open}
+        >
+          Edit Recipe
+        </Button>
+
+        <Modal show={this.state.showModal} onHide={this.close}>
+          <Modal.Header closeButton>
+            <Modal.Title>Edit Recipe</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+
+            <FormGroup>
+              <ReactBootstrap.ControlLabel>Recipe</ReactBootstrap.ControlLabel>
+              <FormControl type="text" defaultValue={this.props.title} ref="title"/>
+            </FormGroup>
+
+
+            <FormGroup>
+              <ReactBootstrap.ControlLabel>Ingredients</ReactBootstrap.ControlLabel>
+              <FormControl componentClass="textarea" defaultValue={this.props.ingredients} ref="ingredients"/>
+            </FormGroup>
+
+          </Modal.Body>
+          <Modal.Footer>
+            <Button bsStyle="primary" onClick={() => {this.handleClick()} }>Edit Recipe</Button>
+            <Button onClick={this.close}>Cancel</Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
+    );
+  },
+  getFormControlNodeTitle: function() {
+    // Get the underlying <input> DOM element
+    return ReactDOM.findDOMNode(this.refs.title);
+  },
+  getFormControlNodeingredients: function() {
+    return ReactDOM.findDOMNode(this.refs.ingredients);
+  },
+  handleClick: function(){
+    const title = this.getFormControlNodeTitle().value;
+    const ingredients = this.getFormControlNodeingredients().value.split(",");
+    this.props.updateRecipeBook(title,ingredients);
+    this.setState({ showModal: false });
+  }
+});
+
 class Dropdown extends React.Component {
   constructor(...args) {
     super(...args);
@@ -174,7 +242,7 @@ class Dropdown extends React.Component {
                 </Table>
 
               <Button  bsStyle="danger" onClick={() => {this.props.deleteIngredient(this.props.title)} }>Delete</Button>
-              <Button  onClick={() => {this.handleClick()} }>Edit</Button>
+              <ModalButtonEdit title={this.props.title} ingredients={this.props.ingredients} />
 
             </Well>
 
