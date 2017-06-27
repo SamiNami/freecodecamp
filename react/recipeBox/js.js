@@ -35,22 +35,32 @@ class Box extends React.Component {
 
     recipeBook.push(newObj);
     this.setState({recipeBook});
-
-    console.log(recipeBook);
   }
 
-  deleteIngredient(ingredient) {
-    console.log(ingredient);
+  deleteIngredient(titel) {
 
     let array = this.state.recipeBook.filter(function(recipe) {
-    return recipe.title !== ingredient;
+    return recipe.title !== titel;
     });
-
-    console.log(array);
 
     this.setState({recipeBook:array});
   }
 
+  editSingleIngreedient(title,ingredients) {
+
+    let array = this.state.recipeBook.filter(function(recipe) {
+    return recipe.title !== title;
+    });
+
+
+    const newObj = {
+      title: title,
+      ingredients: ingredients
+    }
+
+    array.push(newObj);
+    this.setState({recipeBook:array});
+  }
 
   render() {
 
@@ -60,7 +70,8 @@ class Box extends React.Component {
 					<div className="well">
 
                {this.state.recipeBook.map((recipe) =>
-                <Dropdown deleteIngredient={this.deleteIngredient.bind(this)} title={recipe.title} ingredients= {recipe.ingredients} />)}
+                <Dropdown deleteIngredient={this.deleteIngredient.bind(this)} editSingleIngreedient={this.editSingleIngreedient.bind(this)}
+                  title={recipe.title} ingredients= {recipe.ingredients} />)}
 					</div>
 
         <div className="row">
@@ -203,7 +214,7 @@ const ModalButtonEdit = React.createClass({
   handleClick: function(){
     const title = this.getFormControlNodeTitle().value;
     const ingredients = this.getFormControlNodeingredients().value.split(",");
-    this.props.updateRecipeBook(title,ingredients);
+    this.props.editSingleIngreedient(title,ingredients);
     this.setState({ showModal: false });
   }
 });
@@ -242,7 +253,7 @@ class Dropdown extends React.Component {
                 </Table>
 
               <Button  bsStyle="danger" onClick={() => {this.props.deleteIngredient(this.props.title)} }>Delete</Button>
-              <ModalButtonEdit title={this.props.title} ingredients={this.props.ingredients} />
+              <ModalButtonEdit title={this.props.title} ingredients={this.props.ingredients} editSingleIngreedient={this.props.editSingleIngreedient}/>
 
             </Well>
 
