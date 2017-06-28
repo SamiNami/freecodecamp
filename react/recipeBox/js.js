@@ -12,17 +12,15 @@ class Box extends React.Component {
         super(props);
 
         this.state = {recipeBook: [
-          {
-           title: "tomatosoup",
-           ingredients: ["tomato","water"]
-          },
-          {
-           title: "pizza",
-           ingredients: ["tomato","pineapple","ham"]
-          }
+
         ]};
 
 
+  }
+  // get things from local storage
+  componentDidMount(){
+    let recipeBook = JSON.parse(localStorage.getItem('data')) || [];
+    this.setState({recipeBook});
   }
 
   updateRecipeBook(title,ingredients) {
@@ -34,6 +32,7 @@ class Box extends React.Component {
     }
 
     recipeBook.push(newObj);
+    localStorage.setItem('data', JSON.stringify(recipeBook));
     this.setState({recipeBook});
   }
 
@@ -42,7 +41,7 @@ class Box extends React.Component {
     let array = this.state.recipeBook.filter(function(recipe) {
     return recipe.title !== titel;
     });
-
+    localStorage.setItem('data', JSON.stringify(array));
     this.setState({recipeBook:array});
   }
 
@@ -59,6 +58,7 @@ class Box extends React.Component {
     }
 
     array.push(newObj);
+    localStorage.setItem('data', JSON.stringify(array));
     this.setState({recipeBook:array});
   }
 
