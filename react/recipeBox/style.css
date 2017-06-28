@@ -1,8 +1,14 @@
-textarea
-	margin-top: 10px
-	height: 95%
-	width: 90%
+.container
+  margin-top: 25px
 
+.noOutline
+  outline: none !important
 
-body
-	background-color: #91CEFA
+.modal-container
+  position: relative
+
+.info
+  background-color: #90EE90
+
+.whiteWell
+  background-color: white

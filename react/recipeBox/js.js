@@ -37,7 +37,6 @@ class Box extends React.Component {
   }
 
   deleteIngredient(titel) {
-
     let array = this.state.recipeBook.filter(function(recipe) {
     return recipe.title !== titel;
     });
@@ -67,7 +66,7 @@ class Box extends React.Component {
     return (
 			 <div className="container">
 
-					<div className="well">
+					<div className="well info">
 
                {this.state.recipeBook.map((recipe) =>
                 <Dropdown deleteIngredient={this.deleteIngredient.bind(this)} editSingleIngreedient={this.editSingleIngreedient.bind(this)}
@@ -100,7 +99,7 @@ const ModalButton = React.createClass({
   render() {
 
     return (
-      <div>
+      <div className="col-md-1">
 
         <Button
           bsStyle="primary"
@@ -232,14 +231,14 @@ class Dropdown extends React.Component {
     return (
       <div>
 
-        <Button bsStyle="link" onClick={ ()=> this.setState({ open: !this.state.open })}>
+        <Button className="noOutline" bsStyle="link" onClick={ ()=> this.setState({ open: !this.state.open })}>
           {this.props.title}
         </Button>
 
         <Collapse in={this.state.open}>
-          <div>
+          <div className="info">
 
-            <Well>
+            <Well className="whiteWell">
               <h2 className="text-center">Ingredients</h2>
 
                 <Table striped bordered condensed hover>
@@ -251,8 +250,10 @@ class Dropdown extends React.Component {
 
                   </tbody>
                 </Table>
+              <div className="col-md-1">
+                <Button  bsStyle="danger" onClick={() => {this.props.deleteIngredient(this.props.title)} }>Delete</Button>
+              </div>
 
-              <Button  bsStyle="danger" onClick={() => {this.props.deleteIngredient(this.props.title)} }>Delete</Button>
               <ModalButtonEdit title={this.props.title} ingredients={this.props.ingredients} editSingleIngreedient={this.props.editSingleIngreedient}/>
 
             </Well>
